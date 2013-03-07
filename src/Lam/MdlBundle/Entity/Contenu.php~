@@ -1,0 +1,79 @@
+<?php
+
+namespace Lam\MdlBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Lam\MdlBundle\Entity\Contenu
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\ContenuRepository")
+ */
+class Contenu
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer $Ordre
+     *
+     * @ORM\Column(name="Ordre", type="integer")
+     */
+    private $Ordre;
+
+       /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\FormationInformatique")
+     *       
+     */
+    private $laFormationInformatique;
+
+     /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\Theme")
+     */
+    private $leTheme;
+
+       /**
+* @ORM\ManyToMany(targetEntity="Lam\MdlBundle\Entity\Detail",
+cascade={"persist"})
+*/
+private $lesDetails;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set Ordre
+     *
+     * @param integer $ordre
+     */
+    public function setOrdre($ordre)
+    {
+        $this->Ordre = $ordre;
+    }
+
+    /**
+     * Get Ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->Ordre;
+    }
+}

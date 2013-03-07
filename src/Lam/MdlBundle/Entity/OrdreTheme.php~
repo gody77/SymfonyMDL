@@ -1,0 +1,93 @@
+<?php
+
+namespace Lam\MdlBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+
+/**
+ * @ORM\Entity
+ */
+class OrdreTheme
+{
+    /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\FormationInformatique")
+     *       
+     */
+    private $laFormationInformatique;
+
+     /**
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\Theme")
+     */
+    private $leTheme;
+
+    /**
+     * @var integer $Ordre
+     *
+     * @ORM\Column(name="Ordre", type="integer")
+     */
+    private $Ordre;
+
+
+    /**
+     * Set Ordre
+     *
+     * @param integer $ordre
+     */
+    public function setOrdre($ordre)
+    {
+        $this->Ordre = $ordre;
+    }
+
+    /**
+     * Get Ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->Ordre;
+    }
+
+    /**
+     * Set laFormationInformatique
+     *
+     * @param Lam\MdlBundle\Entity\FormationInformatique $laFormationInformatique
+     */
+    public function setLaFormationInformatique(\Lam\MdlBundle\Entity\FormationInformatique $laFormationInformatique)
+    {
+        $this->laFormationInformatique = $laFormationInformatique;
+    }
+
+    /**
+     * Get laFormationInformatique
+     *
+     * @return Lam\MdlBundle\Entity\FormationInformatique 
+     */
+    public function getLaFormationInformatique()
+    {
+        return $this->laFormationInformatique;
+    }
+
+    /**
+     * Set leTheme
+     *
+     * @param Lam\MdlBundle\Entity\Theme $leTheme
+     */
+    public function setLeTheme(\Lam\MdlBundle\Entity\Theme $leTheme)
+    {
+        $this->leTheme = $leTheme;
+    }
+
+    /**
+     * Get leTheme
+     *
+     * @return Lam\MdlBundle\Entity\Theme 
+     */
+    public function getLeTheme()
+    {
+        return $this->leTheme;
+    }
+}
