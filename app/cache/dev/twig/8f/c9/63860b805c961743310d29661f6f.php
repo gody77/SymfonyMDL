@@ -31,7 +31,7 @@ class __TwigTemplate_8fc963860b805c961743310d29661f6f extends Twig_Template
         echo "<h4>La Maison des Ligues de Lorraine (M2L) est une structure financée par le Conseil Régional de Lorraine dont l'administration est déléguée au Comité Régional Olympique et Sportif de Lorraine (CROSL).</h4>
 <h4>La M2L a pour mission de fournir des espaces et des services aux différentes ligues sportives régionales et à d’autres structures hébergées. </h4>
 
-<h4>Une autre de ses missions, est aussi d'organiser des formations dans 2 domaines très demandés: l'informatique et la médecine liée au sport. N'importe qui peut s'inscrire, la participation aux stages est dépendante du nombre d'inscription.</h3>
+<h4>Une autre de ses missions, est aussi d'organiser des formations dans 2 domaines très demandés: l'informatique et la médecine liée au sport. N'importe qui peut s'inscrire, la participation aux stages est dépendante du nombre d'inscription.</h4>
 ";
     }
 

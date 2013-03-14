@@ -36,23 +36,24 @@ class __TwigTemplate_e50d16ead2ee03ad8a4e391edff9c9dc extends Twig_Template
         // line 8
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/LamMdl/images/logo.jpg"), "html", null, true);
         echo "\" alt=\"logo\" width=\"430\" height\"430\" />
-         
+         <h1>Salut</h1>
+                <h2>salut2</h2>
 </header>\t
 
 <nav>
 ";
-        // line 13
+        // line 14
         $this->displayBlock('nav', $context, $blocks);
-        // line 24
+        // line 25
         echo "</nav>
 
 
 
 <article>
 ";
-        // line 29
+        // line 30
         $this->displayBlock('body', $context, $blocks);
-        // line 33
+        // line 34
         echo "</article>
 
 
@@ -74,35 +75,35 @@ class __TwigTemplate_e50d16ead2ee03ad8a4e391edff9c9dc extends Twig_Template
         echo "La Maison des ligues de Lorraine";
     }
 
-    // line 13
+    // line 14
     public function block_nav($context, array $blocks = array())
     {
-        // line 14
+        // line 15
         echo "        
         
         
         
         
         <ul><li><a class='lien' href=\"";
-        // line 19
+        // line 20
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("LamMdlBundle_homepage"), "html", null, true);
         echo "\">Accueil</a></li>
 \t<li><a class='lien' href=\"";
-        // line 20
+        // line 21
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("LamMdlBundle_formationinformatique"), "html", null, true);
         echo "\" >Les formations informatiques</a></li>
         <li><a class='lien' href=\"";
-        // line 21
+        // line 22
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("LamMdlBundle_formationsport"), "html", null, true);
         echo "\" >Les formations sport/médecine</a></li>
 \t
 ";
     }
 
-    // line 29
+    // line 30
     public function block_body($context, array $blocks = array())
     {
-        // line 30
+        // line 31
         echo "
         
 ";
@@ -120,6 +121,6 @@ class __TwigTemplate_e50d16ead2ee03ad8a4e391edff9c9dc extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  104 => 30,  101 => 29,  94 => 21,  90 => 20,  86 => 19,  79 => 14,  76 => 13,  70 => 6,  54 => 33,  52 => 29,  45 => 24,  43 => 13,  35 => 8,  31 => 7,  27 => 6,  20 => 1,  29 => 4,  26 => 3,);
+        return array (  105 => 31,  102 => 30,  95 => 22,  91 => 21,  87 => 20,  80 => 15,  77 => 14,  71 => 6,  55 => 34,  53 => 30,  46 => 25,  44 => 14,  35 => 8,  31 => 7,  27 => 6,  20 => 1,  29 => 4,  26 => 3,);
     }
 }
