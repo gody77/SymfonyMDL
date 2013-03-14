@@ -1,5 +1,7 @@
 <?php
 
+//Test
+
 namespace Lam\MdlBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
