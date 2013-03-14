@@ -1,5 +1,7 @@
 <?php
 
+//Test
+
 namespace Lam\MdlBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
