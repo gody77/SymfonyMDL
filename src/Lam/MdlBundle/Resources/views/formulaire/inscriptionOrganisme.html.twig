@@ -2,6 +2,17 @@
 
 {% block body %}
 
-<a href="{{ path('LamMdlBundle_homepage') }}"> Retour </a>
+    {% if message %}
+        <p>{{message}}</p>
+    {% endif %}
+        
+    <h1>Ajout d'un nouvel organisme</h1>
+    
+    <form action="{{path('LamMdlBundle_inscriptionOrganisme')}}" method="post"{{form_enctype(form)}}>
+        {{form_widget(form)}}
+        <p><button type="submit">Ajouter l'organisme</button></p>
+    </form>
+
+    <a href="{{ path('LamMdlBundle_homepage') }}"> Retour </a>
 
 {% endblock %}

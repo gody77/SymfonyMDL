@@ -48,6 +48,33 @@ class FormulaireController extends Controller
     
     public function inscriptionOrgaAction()
     {
-        return $this->render('LamMdlBundle:formulaire:inscriptionOrganisme.html.twig');
+        $unOrganisme = new organisme();
+        $request = $this->getRequest();
+        $url = $request->headers->get('refere'); // revenir en arrière 
+        $form = $this->createForm(new categorieType(), $unOrganisme);
+        $mess="";
+        
+        if($request->getMethod() == 'POST'){
+            $form->bindRequest($request);
+            // si contrainte respectée, enregistrement du visiteur
+            if($form->isValid()){
+                $em = $this->getDoctrine()->getEntityManager();
+                $em->persist($unOrganisme);
+                $em->flush();
+                $mess='Votre organisme a bien été enregistré !';
+                
+                //pour remettre le formulaire vide
+                $unOrganisme = new organisme();
+                $form = $this->createForm(new organismeType(), $unOrganisme);
+            }
+        }
+        // si tout s'est bien passé, on peut rediriger
+        return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:inscriptionOrganisme.html.twig',
+                array('form'=>$form->createView(),
+                    'message'=>$mess, 
+                    'adresse'=>$url)
+                );
+        
+        //return $this->render('LamMdlBundle:formulaire:inscriptionOrganisme.html.twig');
     }
 }
