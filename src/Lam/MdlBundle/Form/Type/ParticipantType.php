@@ -20,12 +20,7 @@ class ParticipantType extends AbstractType
                ->add("nom","text",array('label'=>"Nom :"))
                ->add("prenom","text",array('label'=>"Prenom"))
                ->add("login","text",array('label'=>"login :"))
-               ->add("mdp","text",array('label'=>"MDP"))
-               ->add("adresse","text",array('label'=>"Numero"))
-               ->add("cp","integer",array('label'=>"cp"))
-               ->add("ville")
-               ->add("dateEmbauche","date",array('label'=>"date"))
-               ->add("LaCategorie");
+          
    }
    public function getName()
    {return 'Lam_Mdlbundle_participanttype';}
