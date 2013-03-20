@@ -26,7 +26,7 @@ class FormationInformatiqueRepository extends EntityRepository
     
     public function contenuFormationInformatique($num)
     {
-    $query = $this->_em->createQuery("SELECT fi.Logo,fi.Titre, fi.id toto,fi.Objectif,fi.Public,fi.Prerequis, fi.nbPlace,t.NomTheme, c.Ordre, d.Libelle FROM LamMdlBundle:contenu c JOIN c.laFormationInformatique fi JOIN c.leTheme t  LEFT JOIN c.lesDetails d where c.laFormationInformatique='$num' order by c.Ordre");
+    $query = $this->_em->createQuery("SELECT fi.logo,fi.titre, fi.id toto,fi.objectif,fi.public,fi.prerequis, fi.nbplace,t.nomtheme, c.ordre, d.libelle FROM LamMdlBundle:contenu c JOIN c.laformationinformatique fi JOIN c.letheme t  LEFT JOIN c.detail d where c.laformationinformatique='$num' order by c.ordre");
     $resultats = $query->getResult();
     return $resultats;
   }

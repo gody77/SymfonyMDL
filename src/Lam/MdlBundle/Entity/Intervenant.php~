@@ -7,82 +7,44 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Lam\MdlBundle\Entity\Intervenant
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\IntervenantRepository")
+ * @ORM\Table(name="intervenant")
+ * @ORM\Entity
  */
 class Intervenant
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $Nom
+     * @var string $nom
      *
-     * @ORM\Column(name="Nom", type="string", length=20)
+     * @ORM\Column(name="Nom", type="string", length=20, nullable=false)
      */
-    private $Nom;
+    private $nom;
 
     /**
-     * @var string $Prenom
+     * @var string $prenom
      *
-     * @ORM\Column(name="Prenom", type="string", length=25)
+     * @ORM\Column(name="Prenom", type="string", length=25, nullable=false)
      */
-    private $Prenom;
-
+    private $prenom;
 
     /**
-     * Get id
+     * @var Formation
      *
-     * @return integer 
+     * @ORM\ManyToMany(targetEntity="Formation", mappedBy="intervenant")
      */
-    public function getId()
+    private $formation;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->formation = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    /**
-     * Set Nom
-     *
-     * @param string $nom
-     */
-    public function setNom($nom)
-    {
-        $this->Nom = $nom;
-    }
-
-    /**
-     * Get Nom
-     *
-     * @return string 
-     */
-    public function getNom()
-    {
-        return $this->Nom;
-    }
-
-    /**
-     * Set Prenom
-     *
-     * @param string $prenom
-     */
-    public function setPrenom($prenom)
-    {
-        $this->Prenom = $prenom;
-    }
-
-    /**
-     * Get Prenom
-     *
-     * @return string 
-     */
-    public function getPrenom()
-    {
-        return $this->Prenom;
-    }
+    
 }

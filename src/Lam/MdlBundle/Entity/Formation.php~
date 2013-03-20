@@ -7,303 +7,122 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Lam\MdlBundle\Entity\Formation
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\FormationRepository")
+ * @ORM\Table(name="formation")
+ * @ORM\Entity
  */
 class Formation
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var date $Date
+     * @var date $date
      *
-     * @ORM\Column(name="Date", type="date")
+     * @ORM\Column(name="Date", type="date", nullable=false)
      */
-    private $Date;
+    private $date;
 
     /**
-     * @var string $Horaire
+     * @var string $horaire
      *
-     * @ORM\Column(name="Horaire", type="string", length=30)
+     * @ORM\Column(name="Horaire", type="string", length=30, nullable=false)
      */
-    private $Horaire;
+    private $horaire;
 
     /**
-     * @var string $Salle
+     * @var string $salle
      *
-     * @ORM\Column(name="Salle", type="string", length=30)
+     * @ORM\Column(name="Salle", type="string", length=30, nullable=false)
      */
-    private $Salle;
+    private $salle;
 
     /**
-     * @var string $Adresse
+     * @var string $adresse
      *
-     * @ORM\Column(name="Adresse", type="string", length=150)
+     * @ORM\Column(name="Adresse", type="string", length=150, nullable=false)
      */
-    private $Adresse;
+    private $adresse;
 
     /**
-     * @var string $Cout
+     * @var string $cout
      *
-     * @ORM\Column(name="Cout", type="string", length=100)
+     * @ORM\Column(name="Cout", type="string", length=100, nullable=false)
      */
-    private $Cout;
+    private $cout;
 
     /**
-     * @var string $Repas
+     * @var string $repas
      *
-     * @ORM\Column(name="Repas", type="string", length=100)
+     * @ORM\Column(name="Repas", type="string", length=100, nullable=false)
      */
-    private $Repas;
+    private $repas;
 
     /**
-     * @var date $DateLimite
+     * @var date $datelimite
      *
-     * @ORM\Column(name="DateLimite", type="date")
+     * @ORM\Column(name="DateLimite", type="date", nullable=false)
      */
-    private $DateLimite;
-/**
-     * @var int $nbInscrit
-     *
-     * @ORM\Column(name="nbInscrit", type="integer", length=3)
-     */
-    private $nbInscrit;
-  /**
-* @ORM\ManyToMany(targetEntity="Lam\MdlBundle\Entity\Intervenant",
-cascade={"persist"})
-*/
-private $lesIntervenants;
-
-  /**
-     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\FormationSport")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $laFormationSport;
-    
-     /**
-     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\FormationInformatique")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $laFormationInformatique;
-    
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $datelimite;
 
     /**
-     * Set Date
+     * @var integer $nbinscrit
      *
-     * @param date $date
+     * @ORM\Column(name="nbInscrit", type="integer", nullable=false)
      */
-    public function setDate($date)
-    {
-        $this->Date = $date;
-    }
+    private $nbinscrit;
 
     /**
-     * Get Date
+     * @var Intervenant
      *
-     * @return date 
+     * @ORM\ManyToMany(targetEntity="Intervenant", inversedBy="formation")
+     * @ORM\JoinTable(name="formation_intervenant",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="formation_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="intervenant_id", referencedColumnName="id")
+     *   }
+     * )
      */
-    public function getDate()
-    {
-        return $this->Date;
-    }
+    private $intervenant;
 
     /**
-     * Set Horaire
+     * @var Organisme
      *
-     * @param string $horaire
+     * @ORM\ManyToMany(targetEntity="Organisme", mappedBy="idFormation")
      */
-    public function setHoraire($horaire)
-    {
-        $this->Horaire = $horaire;
-    }
+    private $idOrganisme;
 
     /**
-     * Get Horaire
+     * @var Formationinformatique
      *
-     * @return string 
+     * @ORM\ManyToOne(targetEntity="Formationinformatique")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="laFormationInformatique_id", referencedColumnName="id")
+     * })
      */
-    public function getHoraire()
-    {
-        return $this->Horaire;
-    }
+    private $laformationinformatique;
 
     /**
-     * Set Salle
+     * @var Formationsport
      *
-     * @param string $salle
+     * @ORM\ManyToOne(targetEntity="Formationsport")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="laFormationSport_id", referencedColumnName="id")
+     * })
      */
-    public function setSalle($salle)
-    {
-        $this->Salle = $salle;
-    }
+    private $laformationsport;
 
-    /**
-     * Get Salle
-     *
-     * @return string 
-     */
-    public function getSalle()
-    {
-        return $this->Salle;
-    }
-
-    /**
-     * Set Adresse
-     *
-     * @param string $adresse
-     */
-    public function setAdresse($adresse)
-    {
-        $this->Adresse = $adresse;
-    }
-
-    /**
-     * Get Adresse
-     *
-     * @return string 
-     */
-    public function getAdresse()
-    {
-        return $this->Adresse;
-    }
-
-    /**
-     * Set Cout
-     *
-     * @param string $cout
-     */
-    public function setCout($cout)
-    {
-        $this->Cout = $cout;
-    }
-
-    /**
-     * Get Cout
-     *
-     * @return string 
-     */
-    public function getCout()
-    {
-        return $this->Cout;
-    }
-
-    /**
-     * Set Repas
-     *
-     * @param string $repas
-     */
-    public function setRepas($repas)
-    {
-        $this->Repas = $repas;
-    }
-
-    /**
-     * Get Repas
-     *
-     * @return string 
-     */
-    public function getRepas()
-    {
-        return $this->Repas;
-    }
-
-    /**
-     * Set DateLimite
-     *
-     * @param date $dateLimite
-     */
-    public function setDateLimite($dateLimite)
-    {
-        $this->DateLimite = $dateLimite;
-    }
-
-    /**
-     * Get DateLimite
-     *
-     * @return date 
-     */
-    public function getDateLimite()
-    {
-        return $this->DateLimite;
-    }
     public function __construct()
     {
-        $this->lesIntervenants = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->intervenant = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->idOrganisme = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-    /**
-     * Add lesIntervenants
-     *
-     * @param Lam\MdlBundle\Entity\Intervenant $lesIntervenants
-     */
-    public function addIntervenant(\Lam\MdlBundle\Entity\Intervenant $lesIntervenants)
-    {
-        $this->lesIntervenants[] = $lesIntervenants;
-    }
-
-    /**
-     * Get lesIntervenants
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getLesIntervenants()
-    {
-        return $this->lesIntervenants;
-    }
-
-    /**
-     * Set laFormationSport
-     *
-     * @param Lam\MdlBundle\Entity\FormationSport $laFormationSport
-     */
-    public function setLaFormationSport(\Lam\MdlBundle\Entity\FormationSport $laFormationSport)
-    {
-        $this->laFormationSport = $laFormationSport;
-    }
-
-    /**
-     * Get laFormationSport
-     *
-     * @return Lam\MdlBundle\Entity\FormationSport 
-     */
-    public function getLaFormationSport()
-    {
-        return $this->laFormationSport;
-    }
-
-    /**
-     * Set laFormationInformatique
-     *
-     * @param Lam\MdlBundle\Entity\FormationInformatique $laFormationInformatique
-     */
-    public function setLaFormationInformatique(\Lam\MdlBundle\Entity\FormationInformatique $laFormationInformatique)
-    {
-        $this->laFormationInformatique = $laFormationInformatique;
-    }
-
-    /**
-     * Get laFormationInformatique
-     *
-     * @return Lam\MdlBundle\Entity\FormationInformatique 
-     */
-    public function getLaFormationInformatique()
-    {
-        return $this->laFormationInformatique;
-    }
 }

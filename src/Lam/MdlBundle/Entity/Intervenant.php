@@ -6,35 +6,46 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Lam\MdlBundle\Entity\Intervenant
- *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\IntervenantRepository")
+ *  @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\IntervenantRepository")
  */
 class Intervenant
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $Nom
+     * @var string $nom
      *
-     * @ORM\Column(name="Nom", type="string", length=20)
+     * @ORM\Column(name="Nom", type="string", length=20, nullable=false)
      */
-    private $Nom;
+    private $nom;
 
     /**
-     * @var string $Prenom
+     * @var string $prenom
      *
-     * @ORM\Column(name="Prenom", type="string", length=25)
+     * @ORM\Column(name="Prenom", type="string", length=25, nullable=false)
      */
-    private $Prenom;
+    private $prenom;
 
+    /**
+     * @var Formation
+     *
+     * @ORM\ManyToMany(targetEntity="Formation", mappedBy="intervenant")
+     */
+    private $formation;
+
+    public function __construct()
+    {
+        $this->formation = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get id
@@ -47,42 +58,62 @@ class Intervenant
     }
 
     /**
-     * Set Nom
+     * Set nom
      *
      * @param string $nom
      */
     public function setNom($nom)
     {
-        $this->Nom = $nom;
+        $this->nom = $nom;
     }
 
     /**
-     * Get Nom
+     * Get nom
      *
      * @return string 
      */
     public function getNom()
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
     /**
-     * Set Prenom
+     * Set prenom
      *
      * @param string $prenom
      */
     public function setPrenom($prenom)
     {
-        $this->Prenom = $prenom;
+        $this->prenom = $prenom;
     }
 
     /**
-     * Get Prenom
+     * Get prenom
      *
      * @return string 
      */
     public function getPrenom()
     {
-        return $this->Prenom;
+        return $this->prenom;
+    }
+
+    /**
+     * Add formation
+     *
+     * @param Lam\MdlBundle\Entity\Formation $formation
+     */
+    public function addFormation(\Lam\MdlBundle\Entity\Formation $formation)
+    {
+        $this->formation[] = $formation;
+    }
+
+    /**
+     * Get formation
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFormation()
+    {
+        return $this->formation;
     }
 }

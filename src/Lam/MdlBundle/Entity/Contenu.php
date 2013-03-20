@@ -6,46 +6,72 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Lam\MdlBundle\Entity\Contenu
- *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\ContenuRepository")
+ *  @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\ContenuRepository")
+
  */
 class Contenu
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var integer $Ordre
+     * @var integer $ordre
      *
-     * @ORM\Column(name="Ordre", type="integer")
+     * @ORM\Column(name="Ordre", type="integer", nullable=false)
      */
-    private $Ordre;
+    private $ordre;
 
-       /**
+    /**
+     * @var Detail
+     *
+     * @ORM\ManyToMany(targetEntity="Detail", inversedBy="contenu")
+     * @ORM\JoinTable(name="contenu_detail",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="contenu_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="detail_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $detail;
+
+    /**
+     * @var Formationinformatique
+     *
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\FormationInformatique")
-     *       
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Formationinformatique")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="laFormationInformatique_id", referencedColumnName="id")
+     * })
      */
-    private $laFormationInformatique;
+    private $laformationinformatique;
 
-     /**
+    /**
+     * @var Theme
+     *
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\Theme")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Theme")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="leTheme_id", referencedColumnName="id")
+     * })
      */
-    private $leTheme;
+    private $letheme;
 
-       /**
-* @ORM\ManyToMany(targetEntity="Lam\MdlBundle\Entity\Detail",
-cascade={"persist"})
-*/
-private $lesDetails;
+    public function __construct()
+    {
+        $this->detail = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get id
@@ -58,86 +84,82 @@ private $lesDetails;
     }
 
     /**
-     * Set Ordre
+     * Set ordre
      *
      * @param integer $ordre
      */
     public function setOrdre($ordre)
     {
-        $this->Ordre = $ordre;
+        $this->ordre = $ordre;
     }
 
     /**
-     * Get Ordre
+     * Get ordre
      *
      * @return integer 
      */
     public function getOrdre()
     {
-        return $this->Ordre;
-    }
-    public function __construct()
-    {
-        $this->lesDetails = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Set laFormationInformatique
-     *
-     * @param Lam\MdlBundle\Entity\FormationInformatique $laFormationInformatique
-     */
-    public function setLaFormationInformatique(\Lam\MdlBundle\Entity\FormationInformatique $laFormationInformatique)
-    {
-        $this->laFormationInformatique = $laFormationInformatique;
+        return $this->ordre;
     }
 
     /**
-     * Get laFormationInformatique
+     * Add detail
      *
-     * @return Lam\MdlBundle\Entity\FormationInformatique 
+     * @param Lam\MdlBundle\Entity\Detail $detail
      */
-    public function getLaFormationInformatique()
+    public function addDetail(\Lam\MdlBundle\Entity\Detail $detail)
     {
-        return $this->laFormationInformatique;
+        $this->detail[] = $detail;
     }
 
     /**
-     * Set leTheme
-     *
-     * @param Lam\MdlBundle\Entity\Theme $leTheme
-     */
-    public function setLeTheme(\Lam\MdlBundle\Entity\Theme $leTheme)
-    {
-        $this->leTheme = $leTheme;
-    }
-
-    /**
-     * Get leTheme
-     *
-     * @return Lam\MdlBundle\Entity\Theme 
-     */
-    public function getLeTheme()
-    {
-        return $this->leTheme;
-    }
-
-    /**
-     * Add lesDetails
-     *
-     * @param Lam\MdlBundle\Entity\Detail $lesDetails
-     */
-    public function addDetail(\Lam\MdlBundle\Entity\Detail $lesDetails)
-    {
-        $this->lesDetails[] = $lesDetails;
-    }
-
-    /**
-     * Get lesDetails
+     * Get detail
      *
      * @return Doctrine\Common\Collections\Collection 
      */
-    public function getLesDetails()
+    public function getDetail()
     {
-        return $this->lesDetails;
+        return $this->detail;
+    }
+
+    /**
+     * Set laformationinformatique
+     *
+     * @param Lam\MdlBundle\Entity\Formationinformatique $laformationinformatique
+     */
+    public function setLaformationinformatique(\Lam\MdlBundle\Entity\Formationinformatique $laformationinformatique)
+    {
+        $this->laformationinformatique = $laformationinformatique;
+    }
+
+    /**
+     * Get laformationinformatique
+     *
+     * @return Lam\MdlBundle\Entity\Formationinformatique 
+     */
+    public function getLaformationinformatique()
+    {
+        return $this->laformationinformatique;
+    }
+
+    /**
+     * Set letheme
+     *
+     * @param Lam\MdlBundle\Entity\Theme $letheme
+     */
+    public function setLetheme(\Lam\MdlBundle\Entity\Theme $letheme)
+    {
+        $this->letheme = $letheme;
+    }
+
+    /**
+     * Get letheme
+     *
+     * @return Lam\MdlBundle\Entity\Theme 
+     */
+    public function getLetheme()
+    {
+        return $this->letheme;
     }
 }

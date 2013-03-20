@@ -17,8 +17,8 @@ class FormationRepository extends EntityRepository
   {
       $req = $this->createQueryBuilder('f')
               ->addSelect('i')
-            ->join('f.lesIntervenants','i')
-            ->where("f.laFormationInformatique = :num")
+            ->join('f.intervenant','i')
+            ->where("f.laformationinformatique = :num")
             ->setParameter('num', $num);
           return $req->getQuery()->getResult();
  
@@ -38,8 +38,8 @@ class FormationRepository extends EntityRepository
     {
            $req = $this->createQueryBuilder('f')
               ->addSelect('i')
-            ->join('f.lesIntervenants','i')
-            ->where("f.laFormationSport = :num")
+            ->join('f.intervenant','i')
+            ->where("f.laformationsport = :num")
             ->setParameter('num', $num);
           return $req->getQuery()->getResult();
   }

@@ -6,49 +6,56 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Lam\MdlBundle\Entity\FormationSport
- *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\FormationSportRepository")
+ *  @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\FormationSportRepository")
  */
-class FormationSport
+class Formationsport
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $Titre
+     * @var string $titre
      *
-     * @ORM\Column(name="Titre", type="string", length=100)
+     * @ORM\Column(name="Titre", type="string", length=100, nullable=false)
      */
-    private $Titre;
+    private $titre;
 
- 
     /**
-     * @var string $Objectif
+     * @var string $objectif
      *
-     * @ORM\Column(name="Objectif", type="string", length=100)
+     * @ORM\Column(name="Objectif", type="string", length=100, nullable=false)
      */
-    private $Objectif;
+    private $objectif;
 
-/**
-     * @var int $nbPlace
-     *
-     * @ORM\Column(name="nbPlace", type="integer", length=3)
-     */
-    private $nbPlace;
-    
     /**
-     * @var string $Logo
+     * @var string $logo
      *
-     * @ORM\Column(name="Logo", type="string", length=100)
+     * @ORM\Column(name="Logo", type="string", length=100, nullable=false)
      */
-    private $Logo;
+    private $logo;
+
+    /**
+     * @var integer $nbplace
+     *
+     * @ORM\Column(name="nbPlace", type="integer", nullable=false)
+     */
+    private $nbplace;
+
+    /**
+     * @var integer $nbplacesrestante
+     *
+     * @ORM\Column(name="nbPlacesRestante", type="integer", nullable=false)
+     */
+    private $nbplacesrestante;
+
+
 
     /**
      * Get id
@@ -61,166 +68,102 @@ class FormationSport
     }
 
     /**
-     * Set Titre
+     * Set titre
      *
      * @param string $titre
      */
     public function setTitre($titre)
     {
-        $this->Titre = $titre;
+        $this->titre = $titre;
     }
 
     /**
-     * Get Titre
+     * Get titre
      *
      * @return string 
      */
     public function getTitre()
     {
-        return $this->Titre;
+        return $this->titre;
     }
 
     /**
-     * Set Salle
-     *
-     * @param string $salle
-     */
-    public function setSalle($salle)
-    {
-        $this->Salle = $salle;
-    }
-
-    /**
-     * Get Salle
-     *
-     * @return string 
-     */
-    public function getSalle()
-    {
-        return $this->Salle;
-    }
-
-    /**
-     * Set Date
-     *
-     * @param DateTime $date
-     */
-    public function setDate(\DateTime $date)
-    {
-        $this->Date = $date;
-    }
-
-    /**
-     * Get Date
-     *
-     * @return DateTime 
-     */
-    public function getDate()
-    {
-        return $this->Date;
-    }
-
-    /**
-     * Set Objectif
+     * Set objectif
      *
      * @param string $objectif
      */
     public function setObjectif($objectif)
     {
-        $this->Objectif = $objectif;
+        $this->objectif = $objectif;
     }
 
     /**
-     * Get Objectif
+     * Get objectif
      *
      * @return string 
      */
     public function getObjectif()
     {
-        return $this->Objectif;
+        return $this->objectif;
     }
 
     /**
-     * Set Horaire
-     *
-     * @param string $horaire
-     */
-    public function setHoraire($horaire)
-    {
-        $this->Horaire = $horaire;
-    }
-
-    /**
-     * Get Horaire
-     *
-     * @return string 
-     */
-    public function getHoraire()
-    {
-        return $this->Horaire;
-    }
-
-    /**
-     * Set Logo
+     * Set logo
      *
      * @param string $logo
      */
     public function setLogo($logo)
     {
-        $this->Logo = $logo;
+        $this->logo = $logo;
     }
 
     /**
-     * Get Logo
+     * Get logo
      *
      * @return string 
      */
     public function getLogo()
     {
-        return $this->Logo;
-    }
-    public function __construct()
-    {
-        $this->lesIntervenants = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add lesIntervenants
-     *
-     * @param Lam\MdlBundle\Entity\Intervenant $lesIntervenants
-     */
-    public function addIntervenant(\Lam\MdlBundle\Entity\Intervenant $lesIntervenants)
-    {
-        $this->lesIntervenants[] = $lesIntervenants;
+        return $this->logo;
     }
 
     /**
-     * Get lesIntervenants
+     * Set nbplace
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @param integer $nbplace
      */
-    public function getLesIntervenants()
+    public function setNbplace($nbplace)
     {
-        return $this->lesIntervenants;
+        $this->nbplace = $nbplace;
     }
 
     /**
-     * Set nbPlace
-     *
-     * @param integer $nbPlace
-     */
-    public function setNbPlace($nbPlace)
-    {
-        $this->nbPlace = $nbPlace;
-    }
-
-    /**
-     * Get nbPlace
+     * Get nbplace
      *
      * @return integer 
      */
-    public function getNbPlace()
+    public function getNbplace()
     {
-        return $this->nbPlace;
+        return $this->nbplace;
+    }
+
+    /**
+     * Set nbplacesrestante
+     *
+     * @param integer $nbplacesrestante
+     */
+    public function setNbplacesrestante($nbplacesrestante)
+    {
+        $this->nbplacesrestante = $nbplacesrestante;
+    }
+
+    /**
+     * Get nbplacesrestante
+     *
+     * @return integer 
+     */
+    public function getNbplacesrestante()
+    {
+        return $this->nbplacesrestante;
     }
 }

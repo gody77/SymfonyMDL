@@ -32,14 +32,14 @@ Coût: {{ unS.Cout }}</br>
 Repas: {{ unS.Repas }}</br>
 
 
-        {% set nbi=  (unS.lesIntervenants|length)%}
+        {% set nbi=  (unS.intervenant|length)%}
         {% if nbi>1  %}
 <p>Les intervenants :</p>
             {% else %}
 <p>L'intervenant :</p>
             {% endif %}
 
-        {% for unI in unS.lesIntervenants %}
+        {% for unI in unS.Intervenant %}
 <h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
       {% endfor %}
   {% set nb=nb+1 %}

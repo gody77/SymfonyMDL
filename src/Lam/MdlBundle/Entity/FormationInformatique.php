@@ -6,61 +6,71 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Lam\MdlBundle\Entity\FormationInformatique
- *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\FormationInformatiqueRepository")
  */
-class FormationInformatique
+class Formationinformatique
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $Titre
+     * @var string $titre
      *
-     * @ORM\Column(name="Titre", type="string", length=100)
+     * @ORM\Column(name="Titre", type="string", length=100, nullable=false)
      */
-    private $Titre;
+    private $titre;
 
     /**
-     * @var string $Objectif
+     * @var text $objectif
      *
-     * @ORM\Column(name="Objectif", type="text")
+     * @ORM\Column(name="Objectif", type="text", nullable=false)
      */
-    private $Objectif;
-
- 
-    /**
-     * @var  $Public
-     *
-     * @ORM\Column(name="Public", type="string", length=150)
-     */
-    private $Public;
+    private $objectif;
 
     /**
-     * @var text $Prerequis
+     * @var string $public
      *
-     * @ORM\Column(name="Prerequis", type="text")
+     * @ORM\Column(name="Public", type="string", length=150, nullable=false)
      */
-    private $Prerequis;
-/**
-     * @var int $nbPlace
+    private $public;
+
+    /**
+     * @var text $prerequis
      *
-     * @ORM\Column(name="nbPlace", type="integer", length=3)
+     * @ORM\Column(name="Prerequis", type="text", nullable=false)
      */
-    private $nbPlace;
-   /**
-     * @var string $Logo
+    private $prerequis;
+
+    /**
+     * @var string $logo
      *
-     * @ORM\Column(name="Logo", type="string", length=50)
+     * @ORM\Column(name="Logo", type="string", length=50, nullable=false)
      */
-    private $Logo;
+    private $logo;
+
+    /**
+     * @var integer $nbplace
+     *
+     * @ORM\Column(name="nbPlace", type="integer", nullable=false)
+     */
+    private $nbplace;
+
+    /**
+     * @var integer $nbplacesrestante
+     *
+     * @ORM\Column(name="nbPlacesRestante", type="integer", nullable=false)
+     */
+    private $nbplacesrestante;
+
+
+
     /**
      * Get id
      *
@@ -72,125 +82,142 @@ class FormationInformatique
     }
 
     /**
-     * Set Titre
+     * Set titre
      *
      * @param string $titre
      */
     public function setTitre($titre)
     {
-        $this->Titre = $titre;
+        $this->titre = $titre;
     }
 
     /**
-     * Get Titre
+     * Get titre
      *
      * @return string 
      */
     public function getTitre()
     {
-        return $this->Titre;
+        return $this->titre;
     }
 
-
     /**
-     * Set Objectif
+     * Set objectif
      *
-     * @param string $objectif
+     * @param text $objectif
      */
     public function setObjectif($objectif)
     {
-        $this->Objectif = $objectif;
+        $this->objectif = $objectif;
     }
 
     /**
-     * Get Objectif
+     * Get objectif
      *
-     * @return string 
+     * @return text 
      */
     public function getObjectif()
     {
-        return $this->Objectif;
+        return $this->objectif;
     }
 
-  
     /**
-     * Set Prerequis
+     * Set public
+     *
+     * @param string $public
+     */
+    public function setPublic($public)
+    {
+        $this->public = $public;
+    }
+
+    /**
+     * Get public
+     *
+     * @return string 
+     */
+    public function getPublic()
+    {
+        return $this->public;
+    }
+
+    /**
+     * Set prerequis
      *
      * @param text $prerequis
      */
     public function setPrerequis($prerequis)
     {
-        $this->Prerequis = $prerequis;
+        $this->prerequis = $prerequis;
     }
 
     /**
-     * Get Prerequis
+     * Get prerequis
      *
      * @return text 
      */
     public function getPrerequis()
     {
-        return $this->Prerequis;
+        return $this->prerequis;
     }
 
     /**
-     * Set Public
-     *
-     * @param text $public
-     */
-    public function setPublic($public)
-    {
-        $this->Public = $public;
-    }
-
-    /**
-     * Get Public
-     *
-     * @return text 
-     */
-    public function getPublic()
-    {
-        return $this->Public;
-    }
-
-
-    /**
-     * Set Logo
+     * Set logo
      *
      * @param string $logo
      */
     public function setLogo($logo)
     {
-        $this->Logo = $logo;
+        $this->logo = $logo;
     }
 
     /**
-     * Get Logo
+     * Get logo
      *
      * @return string 
      */
     public function getLogo()
     {
-        return $this->Logo;
+        return $this->logo;
     }
 
     /**
-     * Set nbPlace
+     * Set nbplace
      *
-     * @param integer $nbPlace
+     * @param integer $nbplace
      */
-    public function setNbPlace($nbPlace)
+    public function setNbplace($nbplace)
     {
-        $this->nbPlace = $nbPlace;
+        $this->nbplace = $nbplace;
     }
 
     /**
-     * Get nbPlace
+     * Get nbplace
      *
      * @return integer 
      */
-    public function getNbPlace()
+    public function getNbplace()
     {
-        return $this->nbPlace;
+        return $this->nbplace;
+    }
+
+    /**
+     * Set nbplacesrestante
+     *
+     * @param integer $nbplacesrestante
+     */
+    public function setNbplacesrestante($nbplacesrestante)
+    {
+        $this->nbplacesrestante = $nbplacesrestante;
+    }
+
+    /**
+     * Get nbplacesrestante
+     *
+     * @return integer 
+     */
+    public function getNbplacesrestante()
+    {
+        return $this->nbplacesrestante;
     }
 }

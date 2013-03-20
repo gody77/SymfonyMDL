@@ -7,73 +7,69 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Lam\MdlBundle\Entity\Contenu
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\ContenuRepository")
+ * @ORM\Table(name="contenu")
+ * @ORM\Entity
  */
 class Contenu
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var integer $Ordre
+     * @var integer $ordre
      *
-     * @ORM\Column(name="Ordre", type="integer")
+     * @ORM\Column(name="Ordre", type="integer", nullable=false)
      */
-    private $Ordre;
+    private $ordre;
 
-       /**
+    /**
+     * @var Detail
+     *
+     * @ORM\ManyToMany(targetEntity="Detail", inversedBy="contenu")
+     * @ORM\JoinTable(name="contenu_detail",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="contenu_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="detail_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $detail;
+
+    /**
+     * @var Formationinformatique
+     *
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\FormationInformatique")
-     *       
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Formationinformatique")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="laFormationInformatique_id", referencedColumnName="id")
+     * })
      */
-    private $laFormationInformatique;
+    private $laformationinformatique;
 
-     /**
+    /**
+     * @var Theme
+     *
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\Theme")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\OneToOne(targetEntity="Theme")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="leTheme_id", referencedColumnName="id")
+     * })
      */
-    private $leTheme;
+    private $letheme;
 
-       /**
-* @ORM\ManyToMany(targetEntity="Lam\MdlBundle\Entity\Detail",
-cascade={"persist"})
-*/
-private $lesDetails;
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
+    public function __construct()
     {
-        return $this->id;
+        $this->detail = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    /**
-     * Set Ordre
-     *
-     * @param integer $ordre
-     */
-    public function setOrdre($ordre)
-    {
-        $this->Ordre = $ordre;
-    }
-
-    /**
-     * Get Ordre
-     *
-     * @return integer 
-     */
-    public function getOrdre()
-    {
-        return $this->Ordre;
-    }
+    
 }

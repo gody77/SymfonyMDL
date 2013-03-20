@@ -11,23 +11,23 @@
 
 
 {% if numFi != unContenu.toto   %}
-{% set nom=asset('bundles/LamMdl/images/' ~ unContenu.Logo )%}
+{% set nom=asset('bundles/LamMdl/images/' ~ unContenu.logo )%}
 <img src="{{ nom }}" alt="logo" width="130" height="100" />
-    <p> <h2>Nom de la formation : </h2>{{  unContenu.Titre }} </p>
-       <p> <h3>Objectif : </h3>{{  unContenu.Objectif }} </p>
-          <p> <h3>Public : </h3>{{  unContenu.Public }} </p>
-             <p> <h3>Prerequis : </h3>{{  unContenu.Prerequis }} </p>
-   <h3>Nombre de places : {{  unContenu.nbPlace }} </h3>
+    <p> <h2>Nom de la formation : </h2>{{  unContenu.titre }} </p>
+       <p> <h3>Objectif : </h3>{{  unContenu.objectif }} </p>
+          <p> <h3>Public : </h3>{{  unContenu.public }} </p>
+             <p> <h3>Prerequis : </h3>{{  unContenu.prerequis }} </p>
+   <h3>Nombre de places : {{  unContenu.nbplace }} </h3>
 <h4>Descriptif:</h4>
     {% set numFi= unContenu.toto  %}
 {% endif %}
 
-    {% if numO != unContenu.Ordre   %}
-    <h5> {{  unContenu.Ordre }} {{ unContenu.NomTheme }} </h5>
-    {% set numO= unContenu.Ordre  %}
+    {% if numO != unContenu.ordre   %}
+    <h5> {{  unContenu.ordre }} {{ unContenu.nomtheme }} </h5>
+    {% set numO= unContenu.ordre  %}
 {% endif %}
-			     {% if unContenu.Libelle != "" %}
-		<h6>*  {{ unContenu.Libelle }} </h6>
+			     {% if unContenu.libelle != "" %}
+		<h6>*  {{ unContenu.libelle }} </h6>
                 {% endif %}
                   
 	{% endfor %}

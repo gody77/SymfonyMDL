@@ -5,172 +5,70 @@ namespace Lam\MdlBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Lam\MdlBundle\Entity\FormationInformatique
+ * Lam\MdlBundle\Entity\Formationinformatique
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\FormationInformatiqueRepository")
+ * @ORM\Table(name="formationinformatique")
+ * @ORM\Entity
  */
-class FormationInformatique
+class Formationinformatique
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $Titre
+     * @var string $titre
      *
-     * @ORM\Column(name="Titre", type="string", length=100)
+     * @ORM\Column(name="Titre", type="string", length=100, nullable=false)
      */
-    private $Titre;
+    private $titre;
 
     /**
-     * @var string $Objectif
+     * @var text $objectif
      *
-     * @ORM\Column(name="Objectif", type="text")
+     * @ORM\Column(name="Objectif", type="text", nullable=false)
      */
-    private $Objectif;
-
- 
-    /**
-     * @var  $Public
-     *
-     * @ORM\Column(name="Public", type="string", length=150)
-     */
-    private $Public;
+    private $objectif;
 
     /**
-     * @var text $Prerequis
+     * @var string $public
      *
-     * @ORM\Column(name="Prerequis", type="text")
+     * @ORM\Column(name="Public", type="string", length=150, nullable=false)
      */
-    private $Prerequis;
-/**
-     * @var int $nbPlace
-     *
-     * @ORM\Column(name="nbPlace", type="integer", length=3)
-     */
-    private $nbPlace;
-   /**
-     * @var string $Logo
-     *
-     * @ORM\Column(name="Logo", type="string", length=50)
-     */
-    private $Logo;
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $public;
 
     /**
-     * Set Titre
+     * @var text $prerequis
      *
-     * @param string $titre
+     * @ORM\Column(name="Prerequis", type="text", nullable=false)
      */
-    public function setTitre($titre)
-    {
-        $this->Titre = $titre;
-    }
+    private $prerequis;
 
     /**
-     * Get Titre
+     * @var string $logo
      *
-     * @return string 
+     * @ORM\Column(name="Logo", type="string", length=50, nullable=false)
      */
-    public function getTitre()
-    {
-        return $this->Titre;
-    }
-
+    private $logo;
 
     /**
-     * Set Objectif
+     * @var integer $nbplace
      *
-     * @param string $objectif
+     * @ORM\Column(name="nbPlace", type="integer", nullable=false)
      */
-    public function setObjectif($objectif)
-    {
-        $this->Objectif = $objectif;
-    }
+    private $nbplace;
 
     /**
-     * Get Objectif
+     * @var integer $nbplacesrestante
      *
-     * @return string 
+     * @ORM\Column(name="nbPlacesRestante", type="integer", nullable=false)
      */
-    public function getObjectif()
-    {
-        return $this->Objectif;
-    }
-
-  
-    /**
-     * Set Prerequis
-     *
-     * @param text $prerequis
-     */
-    public function setPrerequis($prerequis)
-    {
-        $this->Prerequis = $prerequis;
-    }
-
-    /**
-     * Get Prerequis
-     *
-     * @return text 
-     */
-    public function getPrerequis()
-    {
-        return $this->Prerequis;
-    }
-
-    /**
-     * Set Public
-     *
-     * @param text $public
-     */
-    public function setPublic($public)
-    {
-        $this->Public = $public;
-    }
-
-    /**
-     * Get Public
-     *
-     * @return text 
-     */
-    public function getPublic()
-    {
-        return $this->Public;
-    }
+    private $nbplacesrestante;
 
 
-    /**
-     * Set Logo
-     *
-     * @param string $logo
-     */
-    public function setLogo($logo)
-    {
-        $this->Logo = $logo;
-    }
-
-    /**
-     * Get Logo
-     *
-     * @return string 
-     */
-    public function getLogo()
-    {
-        return $this->Logo;
-    }
 }

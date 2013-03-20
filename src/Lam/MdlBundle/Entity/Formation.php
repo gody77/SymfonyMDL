@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Lam\MdlBundle\Entity\Formation
- *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\FormationRepository")
  */
@@ -15,84 +14,117 @@ class Formation
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var date $Date
+     * @var date $date
      *
-     * @ORM\Column(name="Date", type="date")
+     * @ORM\Column(name="Date", type="date", nullable=false)
      */
-    private $Date;
+    private $date;
 
     /**
-     * @var string $Horaire
+     * @var string $horaire
      *
-     * @ORM\Column(name="Horaire", type="string", length=30)
+     * @ORM\Column(name="Horaire", type="string", length=30, nullable=false)
      */
-    private $Horaire;
+    private $horaire;
 
     /**
-     * @var string $Salle
+     * @var string $salle
      *
-     * @ORM\Column(name="Salle", type="string", length=30)
+     * @ORM\Column(name="Salle", type="string", length=30, nullable=false)
      */
-    private $Salle;
+    private $salle;
 
     /**
-     * @var string $Adresse
+     * @var string $adresse
      *
-     * @ORM\Column(name="Adresse", type="string", length=150)
+     * @ORM\Column(name="Adresse", type="string", length=150, nullable=false)
      */
-    private $Adresse;
+    private $adresse;
 
     /**
-     * @var string $Cout
+     * @var string $cout
      *
-     * @ORM\Column(name="Cout", type="string", length=100)
+     * @ORM\Column(name="Cout", type="string", length=100, nullable=false)
      */
-    private $Cout;
+    private $cout;
 
     /**
-     * @var string $Repas
+     * @var string $repas
      *
-     * @ORM\Column(name="Repas", type="string", length=100)
+     * @ORM\Column(name="Repas", type="string", length=100, nullable=false)
      */
-    private $Repas;
+    private $repas;
 
     /**
-     * @var date $DateLimite
+     * @var date $datelimite
      *
-     * @ORM\Column(name="DateLimite", type="date")
+     * @ORM\Column(name="DateLimite", type="date", nullable=false)
      */
-    private $DateLimite;
-/**
-     * @var int $nbInscrit
-     *
-     * @ORM\Column(name="nbInscrit", type="integer", length=3)
-     */
-    private $nbInscrit;
-  /**
-* @ORM\ManyToMany(targetEntity="Lam\MdlBundle\Entity\Intervenant",
-cascade={"persist"})
-*/
-private $lesIntervenants;
+    private $datelimite;
 
-  /**
-     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\FormationSport")
-     * @ORM\JoinColumn(nullable=true)
+    /**
+     * @var integer $nbinscrit
+     *
+     * @ORM\Column(name="nbInscrit", type="integer", nullable=false)
      */
-    private $laFormationSport;
+    private $nbinscrit;
+
+    /**
+     * @var Intervenant
+     *
+     * @ORM\ManyToMany(targetEntity="Intervenant", inversedBy="formation")
+     * @ORM\JoinTable(name="formation_intervenant",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="formation_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="intervenant_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $intervenant;
+
+    /**
+     * @var Organisme
+     *
+     * @ORM\ManyToMany(targetEntity="Organisme", mappedBy="idFormation")
+     */
+    private $idOrganisme;
+
+    /**
+     * @var Formationinformatique
+     *
+     * @ORM\ManyToOne(targetEntity="Formationinformatique")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="laFormationInformatique_id", referencedColumnName="id")
+     * })
+     */
+    private $laformationinformatique;
+
+    /**
+     * @var Formationsport
+     *
+     * @ORM\ManyToOne(targetEntity="Formationsport")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="laFormationSport_id", referencedColumnName="id")
+     * })
+     */
+    private $laformationsport;
+
+    public function __construct()
+    {
+        $this->intervenant = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->idOrganisme = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
-     /**
-     * @ORM\ManyToOne(targetEntity="Lam\MdlBundle\Entity\FormationInformatique")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $laFormationInformatique;
-    
+
     /**
      * Get id
      *
@@ -104,226 +136,242 @@ private $lesIntervenants;
     }
 
     /**
-     * Set Date
+     * Set date
      *
      * @param date $date
      */
     public function setDate($date)
     {
-        $this->Date = $date;
+        $this->date = $date;
     }
 
     /**
-     * Get Date
+     * Get date
      *
      * @return date 
      */
     public function getDate()
     {
-        return $this->Date;
+        return $this->date;
     }
 
     /**
-     * Set Horaire
+     * Set horaire
      *
      * @param string $horaire
      */
     public function setHoraire($horaire)
     {
-        $this->Horaire = $horaire;
+        $this->horaire = $horaire;
     }
 
     /**
-     * Get Horaire
+     * Get horaire
      *
      * @return string 
      */
     public function getHoraire()
     {
-        return $this->Horaire;
+        return $this->horaire;
     }
 
     /**
-     * Set Salle
+     * Set salle
      *
      * @param string $salle
      */
     public function setSalle($salle)
     {
-        $this->Salle = $salle;
+        $this->salle = $salle;
     }
 
     /**
-     * Get Salle
+     * Get salle
      *
      * @return string 
      */
     public function getSalle()
     {
-        return $this->Salle;
+        return $this->salle;
     }
 
     /**
-     * Set Adresse
+     * Set adresse
      *
      * @param string $adresse
      */
     public function setAdresse($adresse)
     {
-        $this->Adresse = $adresse;
+        $this->adresse = $adresse;
     }
 
     /**
-     * Get Adresse
+     * Get adresse
      *
      * @return string 
      */
     public function getAdresse()
     {
-        return $this->Adresse;
+        return $this->adresse;
     }
 
     /**
-     * Set Cout
+     * Set cout
      *
      * @param string $cout
      */
     public function setCout($cout)
     {
-        $this->Cout = $cout;
+        $this->cout = $cout;
     }
 
     /**
-     * Get Cout
+     * Get cout
      *
      * @return string 
      */
     public function getCout()
     {
-        return $this->Cout;
+        return $this->cout;
     }
 
     /**
-     * Set Repas
+     * Set repas
      *
      * @param string $repas
      */
     public function setRepas($repas)
     {
-        $this->Repas = $repas;
+        $this->repas = $repas;
     }
 
     /**
-     * Get Repas
+     * Get repas
      *
      * @return string 
      */
     public function getRepas()
     {
-        return $this->Repas;
+        return $this->repas;
     }
 
     /**
-     * Set DateLimite
+     * Set datelimite
      *
-     * @param date $dateLimite
+     * @param date $datelimite
      */
-    public function setDateLimite($dateLimite)
+    public function setDatelimite($datelimite)
     {
-        $this->DateLimite = $dateLimite;
+        $this->datelimite = $datelimite;
     }
 
     /**
-     * Get DateLimite
+     * Get datelimite
      *
      * @return date 
      */
-    public function getDateLimite()
+    public function getDatelimite()
     {
-        return $this->DateLimite;
-    }
-    public function __construct()
-    {
-        $this->lesIntervenants = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add lesIntervenants
-     *
-     * @param Lam\MdlBundle\Entity\Intervenant $lesIntervenants
-     */
-    public function addIntervenant(\Lam\MdlBundle\Entity\Intervenant $lesIntervenants)
-    {
-        $this->lesIntervenants[] = $lesIntervenants;
+        return $this->datelimite;
     }
 
     /**
-     * Get lesIntervenants
+     * Set nbinscrit
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @param integer $nbinscrit
      */
-    public function getLesIntervenants()
+    public function setNbinscrit($nbinscrit)
     {
-        return $this->lesIntervenants;
+        $this->nbinscrit = $nbinscrit;
     }
 
     /**
-     * Set laFormationSport
-     *
-     * @param Lam\MdlBundle\Entity\FormationSport $laFormationSport
-     */
-    public function setLaFormationSport(\Lam\MdlBundle\Entity\FormationSport $laFormationSport)
-    {
-        $this->laFormationSport = $laFormationSport;
-    }
-
-    /**
-     * Get laFormationSport
-     *
-     * @return Lam\MdlBundle\Entity\FormationSport 
-     */
-    public function getLaFormationSport()
-    {
-        return $this->laFormationSport;
-    }
-
-    /**
-     * Set laFormationInformatique
-     *
-     * @param Lam\MdlBundle\Entity\FormationInformatique $laFormationInformatique
-     */
-    public function setLaFormationInformatique(\Lam\MdlBundle\Entity\FormationInformatique $laFormationInformatique)
-    {
-        $this->laFormationInformatique = $laFormationInformatique;
-    }
-
-    /**
-     * Get laFormationInformatique
-     *
-     * @return Lam\MdlBundle\Entity\FormationInformatique 
-     */
-    public function getLaFormationInformatique()
-    {
-        return $this->laFormationInformatique;
-    }
-
-    /**
-     * Set nbInscrit
-     *
-     * @param integer $nbInscrit
-     */
-    public function setNbInscrit($nbInscrit)
-    {
-        $this->nbInscrit = $nbInscrit;
-    }
-
-    /**
-     * Get nbInscrit
+     * Get nbinscrit
      *
      * @return integer 
      */
-    public function getNbInscrit()
+    public function getNbinscrit()
     {
-        return $this->nbInscrit;
+        return $this->nbinscrit;
+    }
+
+    /**
+     * Add intervenant
+     *
+     * @param Lam\MdlBundle\Entity\Intervenant $intervenant
+     */
+    public function addIntervenant(\Lam\MdlBundle\Entity\Intervenant $intervenant)
+    {
+        $this->intervenant[] = $intervenant;
+    }
+
+    /**
+     * Get intervenant
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getIntervenant()
+    {
+        return $this->intervenant;
+    }
+
+    /**
+     * Add idOrganisme
+     *
+     * @param Lam\MdlBundle\Entity\Organisme $idOrganisme
+     */
+    public function addOrganisme(\Lam\MdlBundle\Entity\Organisme $idOrganisme)
+    {
+        $this->idOrganisme[] = $idOrganisme;
+    }
+
+    /**
+     * Get idOrganisme
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getIdOrganisme()
+    {
+        return $this->idOrganisme;
+    }
+
+    /**
+     * Set laformationinformatique
+     *
+     * @param Lam\MdlBundle\Entity\Formationinformatique $laformationinformatique
+     */
+    public function setLaformationinformatique(\Lam\MdlBundle\Entity\Formationinformatique $laformationinformatique)
+    {
+        $this->laformationinformatique = $laformationinformatique;
+    }
+
+    /**
+     * Get laformationinformatique
+     *
+     * @return Lam\MdlBundle\Entity\Formationinformatique 
+     */
+    public function getLaformationinformatique()
+    {
+        return $this->laformationinformatique;
+    }
+
+    /**
+     * Set laformationsport
+     *
+     * @param Lam\MdlBundle\Entity\Formationsport $laformationsport
+     */
+    public function setLaformationsport(\Lam\MdlBundle\Entity\Formationsport $laformationsport)
+    {
+        $this->laformationsport = $laformationsport;
+    }
+
+    /**
+     * Get laformationsport
+     *
+     * @return Lam\MdlBundle\Entity\Formationsport 
+     */
+    public function getLaformationsport()
+    {
+        return $this->laformationsport;
     }
 }

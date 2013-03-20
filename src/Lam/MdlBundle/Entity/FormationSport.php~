@@ -5,202 +5,56 @@ namespace Lam\MdlBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Lam\MdlBundle\Entity\FormationSport
+ * Lam\MdlBundle\Entity\Formationsport
  *
- * @ORM\Table()
- * @ORM\Entity(repositoryClass="Lam\MdlBundle\Entity\FormationSportRepository")
+ * @ORM\Table(name="formationsport")
+ * @ORM\Entity
  */
-class FormationSport
+class Formationsport
 {
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @var string $Titre
+     * @var string $titre
      *
-     * @ORM\Column(name="Titre", type="string", length=100)
+     * @ORM\Column(name="Titre", type="string", length=100, nullable=false)
      */
-    private $Titre;
-
- 
-    /**
-     * @var string $Objectif
-     *
-     * @ORM\Column(name="Objectif", type="string", length=100)
-     */
-    private $Objectif;
-
-/**
-     * @var int $nbPlace
-     *
-     * @ORM\Column(name="nbPlace", type="integer", length=3)
-     */
-    private $nbPlace;
-    
-    /**
-     * @var string $Logo
-     *
-     * @ORM\Column(name="Logo", type="string", length=100)
-     */
-    private $Logo;
+    private $titre;
 
     /**
-     * Get id
+     * @var string $objectif
      *
-     * @return integer 
+     * @ORM\Column(name="Objectif", type="string", length=100, nullable=false)
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $objectif;
 
     /**
-     * Set Titre
+     * @var string $logo
      *
-     * @param string $titre
+     * @ORM\Column(name="Logo", type="string", length=100, nullable=false)
      */
-    public function setTitre($titre)
-    {
-        $this->Titre = $titre;
-    }
+    private $logo;
 
     /**
-     * Get Titre
+     * @var integer $nbplace
      *
-     * @return string 
+     * @ORM\Column(name="nbPlace", type="integer", nullable=false)
      */
-    public function getTitre()
-    {
-        return $this->Titre;
-    }
+    private $nbplace;
 
     /**
-     * Set Salle
+     * @var integer $nbplacesrestante
      *
-     * @param string $salle
+     * @ORM\Column(name="nbPlacesRestante", type="integer", nullable=false)
      */
-    public function setSalle($salle)
-    {
-        $this->Salle = $salle;
-    }
+    private $nbplacesrestante;
 
-    /**
-     * Get Salle
-     *
-     * @return string 
-     */
-    public function getSalle()
-    {
-        return $this->Salle;
-    }
 
-    /**
-     * Set Date
-     *
-     * @param DateTime $date
-     */
-    public function setDate(\DateTime $date)
-    {
-        $this->Date = $date;
-    }
-
-    /**
-     * Get Date
-     *
-     * @return DateTime 
-     */
-    public function getDate()
-    {
-        return $this->Date;
-    }
-
-    /**
-     * Set Objectif
-     *
-     * @param string $objectif
-     */
-    public function setObjectif($objectif)
-    {
-        $this->Objectif = $objectif;
-    }
-
-    /**
-     * Get Objectif
-     *
-     * @return string 
-     */
-    public function getObjectif()
-    {
-        return $this->Objectif;
-    }
-
-    /**
-     * Set Horaire
-     *
-     * @param string $horaire
-     */
-    public function setHoraire($horaire)
-    {
-        $this->Horaire = $horaire;
-    }
-
-    /**
-     * Get Horaire
-     *
-     * @return string 
-     */
-    public function getHoraire()
-    {
-        return $this->Horaire;
-    }
-
-    /**
-     * Set Logo
-     *
-     * @param string $logo
-     */
-    public function setLogo($logo)
-    {
-        $this->Logo = $logo;
-    }
-
-    /**
-     * Get Logo
-     *
-     * @return string 
-     */
-    public function getLogo()
-    {
-        return $this->Logo;
-    }
-    public function __construct()
-    {
-        $this->lesIntervenants = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Add lesIntervenants
-     *
-     * @param Lam\MdlBundle\Entity\Intervenant $lesIntervenants
-     */
-    public function addIntervenant(\Lam\MdlBundle\Entity\Intervenant $lesIntervenants)
-    {
-        $this->lesIntervenants[] = $lesIntervenants;
-    }
-
-    /**
-     * Get lesIntervenants
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getLesIntervenants()
-    {
-        return $this->lesIntervenants;
-    }
 }
