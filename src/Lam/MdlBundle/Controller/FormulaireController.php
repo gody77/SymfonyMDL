@@ -3,7 +3,8 @@
 namespace Lam\MdlBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
+use Lam\MdlBundle\Form\Type\organismeType; //TP9
+use Lam\MdlBundle\Entity\organisme; //TP9
 
 class FormulaireController extends Controller
 {
