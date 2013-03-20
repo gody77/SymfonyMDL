@@ -12,16 +12,12 @@ use Lam\MdlBundle\Entity\organisme;
 class OrganismeType extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options){
-        $builder->add('id','text',array('label' => "Numéro : "))
-                ->add('nom','text',array('label' => "Nom : "))
-                ->add('prenom','text',array('label' => "Prénom : "))
-                ->add('login','text',array('label' => "Login : "))
-                ->add('mdp','text',array('label' => "Mot de passe : "))
-                ->add('adresse','text',array('label' => "Adresse : "))
-                ->add('cp','integer',array('label' => "CP : "))
-                ->add('ville','text',array('label' => "Ville : ", 'required'=>false,"trim"=>TRUE))
-                ->add('dateEmbauche','date',array('label' => "Date d'embauche : "))
-                ->add('laCategorie');
+        $builder->add('idOrganisme','text',array('label' => "Numéro : "))
+                ->add('nomOrganisme','text',array('label' => "Nom organisme : "))
+                ->add('mdpOrganisme','text',array('label' => "Mot de passe organisme : "))
+                ->add('adresseOrganisme','text',array('label' => "Adresse organisme : "))
+                ->add('villeOrganisme','text',array('label' => "Ville : ", 'required'=>false,"trim"=>TRUE))
+                ->add('cpOrganisme','integer',array('label' => "CP : "));
     }
     
     public function getName(){
