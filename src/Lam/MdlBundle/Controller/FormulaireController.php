@@ -48,10 +48,10 @@ class FormulaireController extends Controller
     
     public function inscriptionOrgaAction()
     {
-        $unOrganisme = new organisme();
+        $unOrganisme = new Organisme();
         $request = $this->getRequest();
         $url = $request->headers->get('refere'); // revenir en arrière 
-        $form = $this->createForm(new categorieType(), $unOrganisme);
+        $form = $this->createForm(new OrganismeType(), $unOrganisme);
         $mess="";
         
         if($request->getMethod() == 'POST'){
@@ -64,8 +64,8 @@ class FormulaireController extends Controller
                 $mess='Votre organisme a bien été enregistré !';
                 
                 //pour remettre le formulaire vide
-                $unOrganisme = new organisme();
-                $form = $this->createForm(new organismeType(), $unOrganisme);
+                $unOrganisme = new Organisme();
+                $form = $this->createForm(new OrganismeType(), $unOrganisme);
             }
         }
         // si tout s'est bien passé, on peut rediriger
