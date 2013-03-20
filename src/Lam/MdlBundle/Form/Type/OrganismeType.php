@@ -25,7 +25,7 @@ class OrganismeType extends AbstractType
     }
     
     public function getName(){
-        return 'CG_GsbBundle_organismeType';
+        return 'Lam_MdlBundle_organismeType';
     }
 }
 
