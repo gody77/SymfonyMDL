@@ -13,8 +13,4 @@ class DefaultController extends Controller
         return $this->render('LamMdlBundle:Default:index.html.twig');
     }
     
-    public function inscriptionOrgaAction()
-    {
-        return $this->render('LamMdlBundle:formulaire:inscriptionOrganisme.html.twig');
-    }
 }

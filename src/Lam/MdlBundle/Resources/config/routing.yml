@@ -29,6 +29,7 @@ LamMdlBundle_datesstagesport:
 LamMdlBundle_Form:
     pattern:  /
     defaults: { _controller: LamMdlBundle:Formulaire:ajout }
+    
 LamMdlBundle_inscriptionOrganisme:
     pattern: /inscription_organisme
     defauts: { _controller: LamMdlBundle:Formulaire:inscriptionOrga }
