@@ -16,10 +16,9 @@ class ParticipantType extends AbstractType
    public function buildForm(FormBuilder $builder,array $option)
    {
        $builder
-               ->add("id","text",array('label'=>"Numero :"))
-               ->add("nom","text",array('label'=>"Nom :"))
-               //->add("prenom","text",array('label'=>"Prenom"))
-               ->add("login","text",array('label'=>"login :"))
+               ->add("nbParticipant","integer",array('label'=>"Nombres Particpants :"))
+               ->add("nomOrganisme","choice",array('label'=>"Nom  de l'organisme:"))
+               ->add("mdp","password",array('label'=>"Mot de passe :"));
           
    }
    public function getName()
