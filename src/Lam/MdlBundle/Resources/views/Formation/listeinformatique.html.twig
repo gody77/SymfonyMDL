@@ -12,38 +12,42 @@
   {% for unS in lesStages %}
 
 <a href="{{ path('LamMdlBundle_formationinformatique') }}"> Retour </a>
-
-<h2>Stage {{nb}}
+<TABLE id="tabInfo" border="1" WIDTH="100%" > 
+    <TR> 
+        <TH><h2>Stage {{nb}}</TH> 
 
 {% set dateLimite=unS.DateLimite|date('d-m-Y')%}
 {% set dateActuel=date()%}      
 {% if dateLimite< dateActuel %} 
-    <input type="button" name="inscription" value="s'inscrire" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> 
+        <TH><input type="button" name="inscription" value="s'inscrire" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </TH></TR> 
 
              {%else%}
-    </br>Les inscriptions sont fermées pour cette formation.
+        <TH></br>Les inscriptions sont fermées pour cette formation.</TH></TR> 
              {%endif%}</h2>
-Date: {{ unS.Date|date('d-m-Y') }}</br>
-Horaire:  {{ unS.Horaire }}</br>       
-Date limite d'inscription: {{ unS.DateLimite|date('d-m-Y') }}</br>             
-Salle: {{ unS.Salle }}</br>
-Adresse: {{ unS.Adresse }}</br>
-Coût: {{ unS.Cout }}</br>
-Repas: {{ unS.Repas }}</br>
+    <TR><TD colspan="2">
+            Date: {{ unS.Date|date('d-m-Y') }}</br>
+            Horaire:  {{ unS.Horaire }}</br>       
+            Date limite d'inscription: {{ unS.DateLimite|date('d-m-Y') }}</br>             
+            Salle: {{ unS.Salle }}</br>
+            Adresse: {{ unS.Adresse }}</br>
+            Coût: {{ unS.Cout }}</br>
+            Repas: {{ unS.Repas }}</br>
 
 
         {% set nbi=  (unS.lesIntervenants|length)%}
         {% if nbi>1  %}
-<p>Les intervenants :</p>
+            <p>Les intervenants :</p>
             {% else %}
-<p>L'intervenant :</p>
+            <p>L'intervenant :</p>
             {% endif %}
 
         {% for unI in unS.lesIntervenants %}
-<h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
+            <h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
       {% endfor %}
+        </TD> 
+    </TR> 
+</TABLE> 
   {% set nb=nb+1 %}
   {% endfor %}
-
 
 {% endblock %}
