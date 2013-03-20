@@ -12,15 +12,18 @@
   {% for unS in lesStages %}
 
 <a href="{{ path('LamMdlBundle_formationsport') }}"> Retour </a>
-<h2>Stage {{nb}}
+<TABLE id="tabSport" border="1" WIDTH="100%" > 
+      <TR> 
+<TH><h2>Stage {{nb}}</TH> 
      {% set dateLimite=unS.Date|date('d-m-Y')%}
 {% set dateActuel=date()%}      
 {% if dateLimite< dateActuel %} 
-        <input type="button" name="inscription" value="s'inscrire" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> 
+       <TH> <input type="button" name="inscription" value="s'inscrire" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </TH></TR> 
 
              {%else%}
-        </br>Les inscriptions sont fermées pour cette formation.
+        <TH>Les inscriptions sont fermées pour cette formation.</TH></TR> 
              {%endif%}</h2></h2>
+<TR><TD colspan="2">
 Date: {{ unS.Date|date('d-m-Y') }}</br>
 Horaire:  {{ unS.Horaire }}</br>       
 Salle: {{ unS.Salle }}</br>
@@ -37,6 +40,9 @@ Salle: {{ unS.Salle }}</br>
       {% endfor %}
   {% set nb=nb+1 %}
   {% endfor %}
+</TD> 
+  </TR> 
+</TABLE> 
 
 
 {% endblock %}
