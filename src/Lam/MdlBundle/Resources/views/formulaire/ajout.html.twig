@@ -1,0 +1,22 @@
+{% extends 'LamMdlBundle::layout.html.twig' %}
+
+{% block body %}
+{% if message %}
+
+<p>{{message }}</p>
+{% endif %}
+
+<h1>Ajout d'un nouveau visiteur </h1>
+
+<form action="{{path('ARGsbBundle_Form')}}"method="POST"{{form_enctype(form)}}>
+   {{form_widget(form)}}
+        
+      
+        <p>   <button  type="submit"> Ajout </button>  </p>
+        <p><a href="{{path('LamMdlBundle_formationinformatique')}}">retour</a></p>
+</form>
+
+
+
+
+{% endblock %}  
