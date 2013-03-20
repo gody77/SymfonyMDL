@@ -28,14 +28,14 @@ Date: {{ unS.Date|date('d-m-Y') }}</br>
 Horaire:  {{ unS.Horaire }}</br>       
 Salle: {{ unS.Salle }}</br>
 
-        {% set nbi=  (unS.lesIntervenants|length)%}
+        {% set nbi=  (unS.intervenant|length)%}
         {% if nbi>1  %}
 <p>Intervenants : Les docteurs :</p>
             {% else %}
 <p>Intervenant : Le docteur :</p>
             {% endif %}
 
-        {% for unI in unS.lesIntervenants %}
+        {% for unI in unS.intervenant %}
 <h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
       {% endfor %}
   {% set nb=nb+1 %}

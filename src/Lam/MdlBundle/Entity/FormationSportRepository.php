@@ -14,7 +14,7 @@ class FormationSportRepository extends EntityRepository
 {
     public function contenuFormationSport($num)
     {
-    $query = $this->_em->createQuery("SELECT fs.Titre, fs.Objectif,fs.nbPlace,fs.Logo FROM LamMdlBundle:FormationSport fs  where fs.id='$num'");
+    $query = $this->_em->createQuery("SELECT fs.titre, fs.objectif,fs.nbplace,fs.logo FROM LamMdlBundle:formationsport fs  where fs.id='$num'");
     $resultats = $query->getResult();
     return $resultats;
   }

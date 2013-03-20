@@ -9,13 +9,13 @@
 
 {% for unContenu in contenuformationsport %}
 
-{% set nom=asset('bundles/LamMdl/images/' ~ unContenu.Logo )%}
+{% set nom=asset('bundles/LamMdl/images/' ~ unContenu.logo )%}
 
 
 
-    <p><img src="{{ nom }}" alt="logo" width="130" height="100" /> <h2>Nom de la formation : </h2>{{  unContenu.Titre }} </p>
-       <p> <h3>Objectif : </h3>{{  unContenu.Objectif }} </p>
- <h3>Nombre de places : {{  unContenu.nbPlace }} </h3>
+    <p><img src="{{ nom }}" alt="logo" width="130" height="100" /> <h2>Nom de la formation : </h2>{{  unContenu.titre }} </p>
+       <p> <h3>Objectif : </h3>{{  unContenu.objectif }} </p>
+ <h3>Nombre de places : {{  unContenu.nbplace }} </h3>
 
 
                   
