@@ -35,14 +35,12 @@ class __TwigTemplate_e50d16ead2ee03ad8a4e391edff9c9dc extends Twig_Template
 \t\t<img src=\"";
         // line 8
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/LamMdl/images/logo.jpg"), "html", null, true);
-        echo "\" alt=\"logo\" width=\"430\" height\"430\" />
-         <h1>Salut</h1>
-                <h2>salut2</h2>
+        echo "\" alt=\"logo\" width=\"430\"  />
 </header>\t
 
 <nav>
 ";
-        // line 14
+        // line 12
         $this->displayBlock('nav', $context, $blocks);
         // line 25
         echo "</nav>
@@ -75,28 +73,33 @@ class __TwigTemplate_e50d16ead2ee03ad8a4e391edff9c9dc extends Twig_Template
         echo "La Maison des ligues de Lorraine";
     }
 
-    // line 14
+    // line 12
     public function block_nav($context, array $blocks = array())
     {
-        // line 15
+        // line 13
         echo "        
         
         
         
         
         <ul><li><a class='lien' href=\"";
-        // line 20
+        // line 18
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("LamMdlBundle_homepage"), "html", null, true);
         echo "\">Accueil</a></li>
 \t<li><a class='lien' href=\"";
-        // line 21
+        // line 19
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("LamMdlBundle_formationinformatique"), "html", null, true);
         echo "\" >Les formations informatiques</a></li>
         <li><a class='lien' href=\"";
-        // line 22
+        // line 20
         echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("LamMdlBundle_formationsport"), "html", null, true);
         echo "\" >Les formations sport/médecine</a></li>
+        <li><a class='lien' href=\"";
+        // line 21
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("LamMdlBundle_formationsport"), "html", null, true);
+        echo "\" >Inscription organisme</a></li>
 \t
+        
 ";
     }
 
@@ -121,6 +124,6 @@ class __TwigTemplate_e50d16ead2ee03ad8a4e391edff9c9dc extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  105 => 31,  102 => 30,  95 => 22,  91 => 21,  87 => 20,  80 => 15,  77 => 14,  71 => 6,  55 => 34,  53 => 30,  46 => 25,  44 => 14,  35 => 8,  31 => 7,  27 => 6,  20 => 1,  29 => 4,  26 => 3,);
+        return array (  108 => 31,  105 => 30,  97 => 21,  93 => 20,  89 => 19,  85 => 18,  78 => 13,  69 => 6,  53 => 34,  51 => 30,  44 => 25,  42 => 12,  35 => 8,  31 => 7,  27 => 6,  20 => 1,  152 => 47,  146 => 46,  143 => 45,  132 => 43,  128 => 42,  125 => 41,  121 => 39,  117 => 37,  114 => 36,  112 => 35,  106 => 32,  102 => 31,  98 => 30,  94 => 29,  90 => 28,  86 => 27,  82 => 26,  79 => 25,  75 => 12,  68 => 20,  64 => 19,  62 => 18,  57 => 16,  52 => 14,  49 => 13,  45 => 12,  37 => 7,  34 => 6,  32 => 5,  29 => 4,  26 => 3,);
     }
 }
