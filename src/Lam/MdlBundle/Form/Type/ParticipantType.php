@@ -19,6 +19,7 @@ class ParticipantType extends AbstractType
                ->add("nbParticipant","integer",array('label'=>"Nombres Particpants :"))
                ->add("nomOrganisme","choice",array('label'=>"Nom  de l'organisme:"))
                ->add("mdp","password",array('label'=>"Mot de passe :"));
+       //test
           
    }
    public function getName()
