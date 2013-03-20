@@ -15,7 +15,7 @@
 
 <h2>Stage {{nb}}
 
-{% set dateLimite=unS.Date|date('d-m-Y')%}
+{% set dateLimite=unS.DateLimite|date('d-m-Y')%}
 {% set dateActuel=date()%}      
 {% if dateLimite< dateActuel %} 
     <input type="button" name="inscription" value="s'inscrire" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> 

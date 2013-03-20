@@ -18,7 +18,7 @@ class ParticipantType extends AbstractType
        $builder
                ->add("id","text",array('label'=>"Numero :"))
                ->add("nom","text",array('label'=>"Nom :"))
-               ->add("prenom","text",array('label'=>"Prenom"))
+               //->add("prenom","text",array('label'=>"Prenom"))
                ->add("login","text",array('label'=>"login :"))
           
    }

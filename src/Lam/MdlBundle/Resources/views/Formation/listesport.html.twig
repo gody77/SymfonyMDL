@@ -12,20 +12,28 @@
   {% for unS in lesStages %}
 
 <a href="{{ path('LamMdlBundle_formationsport') }}"> Retour </a>
-     <h2>Stage {{nb}}</h2>
-      Date: {{ unS.Date|date('d-m-Y') }}</br>
-             Horaire:  {{ unS.Horaire }}</br>       
-             Salle: {{ unS.Salle }}</br>
-     
+<h2>Stage {{nb}}
+     {% set dateLimite=unS.Date|date('d-m-Y')%}
+{% set dateActuel=date()%}      
+{% if dateLimite< dateActuel %} 
+        <input type="button" name="inscription" value="s'inscrire" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> 
+
+             {%else%}
+        </br>Les inscriptions sont fermées pour cette formation.
+             {%endif%}</h2></h2>
+Date: {{ unS.Date|date('d-m-Y') }}</br>
+Horaire:  {{ unS.Horaire }}</br>       
+Salle: {{ unS.Salle }}</br>
+
         {% set nbi=  (unS.lesIntervenants|length)%}
         {% if nbi>1  %}
-        <p>Intervenants : Les docteurs :</p>
+<p>Intervenants : Les docteurs :</p>
             {% else %}
-        <p>Intervenant : Le docteur :</p>
+<p>Intervenant : Le docteur :</p>
             {% endif %}
-             
+
         {% for unI in unS.lesIntervenants %}
-        <h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
+<h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
       {% endfor %}
   {% set nb=nb+1 %}
   {% endfor %}
