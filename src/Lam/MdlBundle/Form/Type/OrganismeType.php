@@ -20,7 +20,7 @@ class OrganismeType extends AbstractType
                 ->add('adresse','text',array('label' => "Adresse : "))
                 ->add('cp','integer',array('label' => "CP : "))
                 ->add('ville','text',array('label' => "Ville : ", 'required'=>false,"trim"=>TRUE))
-              //  ->add('dateEmbauche','date',array('label' => "Date d'embauche : "))
+                ->add('dateEmbauche','date',array('label' => "Date d'embauche : "))
                 ->add('laCategorie');
     }
     
