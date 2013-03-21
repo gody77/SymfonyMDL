@@ -11,12 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Organisme
 {
+    
     /**
      * @var integer $idOrganisme
      *
-     * @ORM\Column(name="id_organisme", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idOrganisme;
 
