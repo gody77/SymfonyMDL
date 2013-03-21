@@ -13,35 +13,44 @@
 
 <a href="{{ path('LamMdlBundle_formationsport') }}"> Retour </a>
 <TABLE id="tabSport" border="1" WIDTH="100%" > 
-      <TR> 
-<TH><h2>Stage {{nb}}</TH> 
+    <TR> 
+        <TH><h2>Stage {{nb}}</TH> 
      {% set dateLimite=unS.Date|date('d-m-Y')%}
-{% set dateActuel=date()%}      
+{% set dateActuel=date()%}
+{%set placeRestante = laF.Nbplacesrestante-unS.Nbinscrit %}
+
 {% if dateLimite< dateActuel %} 
-       <TH> <input type="button" name="inscription" value="s'inscrire pour cette date" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </TH></TR> 
+        <TH><form action="" method="POST">
+            <input type="hidden" value="{{unS.Id}}" name="idFormation">
+            <input type="hidden" value="{{placeRestante}}" name="placeRestante">
+            <input type="hidden" value="{{ laF.Titre }}" name="nomFormation">
+            <input type="hidden" value="{{ unS.Date|date('d-m-Y') }}" name="dateFormation">
+            <input type="submit" value="S'inscrire pour cette date" style="background-color:#3cb371" style="color:white" >
+        </form> 
+        Nombre de places restantes : {{ placeRestante }}</TH></TR>
 
              {%else%}
         <TH>Les inscriptions sont fermées pour cette formation.</TH></TR> 
              {%endif%}</h2></h2>
 <TR><TD colspan="2">
-Date: {{ unS.Date|date('d-m-Y') }}</br>
-Horaire:  {{ unS.Horaire }}</br>       
-Salle: {{ unS.Salle }}</br>
+        Date: {{ unS.Date|date('d-m-Y') }}</br>
+        Horaire:  {{ unS.Horaire }}</br>       
+        Salle: {{ unS.Salle }}</br>
 
         {% set nbi=  (unS.intervenant|length)%}
         {% if nbi>1  %}
-<p>Intervenants : Les docteurs :</p>
+        <p>Intervenants : Les docteurs :</p>
             {% else %}
-<p>Intervenant : Le docteur :</p>
+        <p>Intervenant : Le docteur :</p>
             {% endif %}
 
         {% for unI in unS.intervenant %}
-<h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
+        <h3>- {{ unI.Prenom }} {{ unI.Nom }}</h3>
       {% endfor %}
   {% set nb=nb+1 %}
   {% endfor %}
-</TD> 
-  </TR> 
+    </TD> 
+</TR> 
 </TABLE> 
 
 

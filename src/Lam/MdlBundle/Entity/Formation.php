@@ -117,6 +117,7 @@ class Formation
      * })
      */
     private $laformationsport;
+    
 
     public function __construct()
     {
@@ -374,4 +375,5 @@ class Formation
     {
         return $this->laformationsport;
     }
+    
 }
