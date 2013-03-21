@@ -19,7 +19,7 @@
 {% set dateLimite=unS.DateLimite|date('d-m-Y')%}
 {% set dateActuel=date()%}      
 {% if dateLimite< dateActuel %} 
-        <TH><input type="button" name="inscription" value="s'inscrire" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </TH></TR> 
+        <TH><input type="button" name="inscription" value="S'inscrire pour cette date" onclick="self.location.href=''" style="background-color:#3cb371" style="color:white; font-weight:bold"onclick> </TH></TR> 
 
              {%else%}
         <TH></br>Les inscriptions sont fermées pour cette formation.</TH></TR> 
