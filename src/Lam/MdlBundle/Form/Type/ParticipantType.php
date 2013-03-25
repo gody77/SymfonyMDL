@@ -1,30 +1,32 @@
 <?php
 
-namespace AR\GsbBundle\Form\Type;
+namespace Lam\MdlBundle\Form\Type;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
-use AR\GsbBundle\Entity\visiteur;
-
+use Lam\MdlBundle\Entity\Inscription;
 
 /**
- * Description of VisiteurType
+ * Description of participantType
  *
  * @author Anthony
  */
-class ParticipantType extends AbstractType
-{
-   public function buildForm(FormBuilder $builder,array $option)
-   {
-       $builder
-               ->add("nbParticipant","integer",array('label'=>"Nombres Particpants :"))
-               ->add("nomOrganisme","choice",array('label'=>"Nom  de l'organisme:"))
-               ->add("mdp","password",array('label'=>"Mot de passe :"));
- //test
-   }
-   public function getName()
-   {return 'Lam_Mdlbundle_participanttype';}
-}
-    
+class ParticipantType extends AbstractType {
 
+    public function buildForm(FormBuilder $builder, array $option) {
+        $builder
+                ->add("id_formation","hidden")
+                ->add("lorganisme")
+                //   ->add("lemdp","password",array('label'=>"mdp :"))
+                ->add("nbr_inscrits", "integer", array('label' => "nombre participant :"));
+
+        //test
+    }
+
+    public function getName() {
+        return 'get';
+    }
+
+}
 
 ?>

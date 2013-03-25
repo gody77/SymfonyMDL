@@ -18,12 +18,15 @@
 
 {% set dateLimite=unS.DateLimite|date('d-m-Y')%}
 {% set dateActuel=date()%} 
-{%set placeRestante = laF.Nbplacesrestante-unS.Nbinscrit %}
+{%set placeRestante = laF.nbplace-unS.nbinscrit %}
 {% if dateLimite< dateActuel %} 
 
         <TH>
-        <form action="" method="POST">
+        <form action="{{ path('LamMdlBundle_Form') }}" method="POST">
+            
+           
             <input type="hidden" value="{{unS.Id}}" name="idFormation">
+             <input type="hidden" value="{{laF.id}}" name="fid">
             <input type="hidden" value="{{placeRestante}}" name="placeRestante">
             <input type="hidden" value="{{ laF.Titre }}" name="nomFormation">
             <input type="hidden" value="{{ unS.Date|date('d-m-Y') }}" name="dateFormation">

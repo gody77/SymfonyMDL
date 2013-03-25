@@ -1,0 +1,31 @@
+{% extends 'LamMdlBundle::layout.html.twig' %}
+
+{% block body %}
+
+  
+
+
+<form action="{{path('LamMdlBundle_Verification')}}"method="POST"{{form_enctype(form)}}>
+
+       <div >
+            {{form_label(form.nom_organisme,"Nom de l'orgnisme")}}
+        {{form_widget(form.nom_organisme)}}
+                
+                </div><br />
+                
+                <div >
+            {{form_label(form.mdpOrganisme,"Mdp")}}
+        {{form_widget(form.mdpOrganisme)}}
+             
+                </div><br />
+                         
+         
+                
+        <p>   <button  type="submit"> Ajout </button>  </p>
+        <p><a href="{{path('LamMdlBundle_formationinformatique')}}">retour</a></p>
+</form>
+
+
+
+
+{% endblock %}  

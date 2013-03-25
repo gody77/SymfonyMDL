@@ -74,21 +74,12 @@ class Organisme
      * @var Formation
      *
      * @ORM\ManyToMany(targetEntity="Formation", inversedBy="idOrganisme")
-     * @ORM\JoinTable(name="inscription",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="id_organisme", referencedColumnName="id_organisme")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="id_formation", referencedColumnName="id")
-     *   }
+     *
      * )
      */
     private $idFormation;
 
-    public function __construct()
-    {
-        $this->idFormation = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+   
     
 
     /**
@@ -111,16 +102,7 @@ class Organisme
         $this->nomOrganisme = $nomOrganisme;
     }
 
-    /**
-     * Get nomOrganisme
-     *
-     * @return text 
-     */
-    public function getNomOrganisme()
-    {
-        return $this->nomOrganisme;
-    }
-
+    
     /**
      * Set mdpOrganisme
      *
@@ -260,4 +242,75 @@ class Organisme
     {
         return $this->idFormation;
     }
+    
+    
+    /**
+     * Get nomOrganisme
+     *
+     * @return text 
+     */
+    public function getNomOrganisme()
+    {
+        return $this->nomOrganisme;
+    }
+
+    
+    
+   
+    
+  
+    
+    
+    
+    /**
+   * @ORM\OneToMany(targetEntity="Lam\MdlBundle\Entity\Inscription", mappedBy="lorganisme")
+   */
+   private $lesorganismes;
+    
+    public function __toString() {
+        return $this->nomOrganisme;
+    }
+    
+    public function __construct()
+    {
+       
+        $this->lesorganismes= new \Doctrine\Common\Collections\ArrayCollection();
+        
+    }
+    
+    
+    /**
+     * Add lesorganismes
+     *
+     * @param Lam\MdlBundle\Entity\Inscription $lesorganismes
+     */
+    public function addInscription(\Lam\MdlBundle\Entity\Inscription $lesorganismes)
+    {
+        $this->lesorganismes[] = $lesorganismes;
+      
+    }
+
+    /**
+     * Get lesorganismes
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getLesorganismes()
+    {
+        return $this->lesorganismes;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+
+

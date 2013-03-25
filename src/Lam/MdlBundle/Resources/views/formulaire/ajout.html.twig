@@ -1,17 +1,58 @@
 {% extends 'LamMdlBundle::layout.html.twig' %}
 
 {% block body %}
-{% if message %}
 
-<p>{{message }}</p>
-{% endif %}
+  {% if message %}
 
-<h1>Ajout d'un nouveau visiteur </h1>
+<h1>Inscription pour la  
+    <br />
+        {{message}}
+    {{message2}}
+    
+    </h1>
+    {% endif %}
 
-<form action="{{path('ARGsbBundle_Form')}}"method="POST"{{form_enctype(form)}}>
-   {{form_widget(form)}}
+
+
+<form action="{{path('LamMdlBundle_Form')}}"method="POST"{{form_enctype(form)}}>
+   
+
         
-      
+        <div >
+        {{form_label(form.lorganisme,"Nom de l'orgnisme")}} 
+        {{form_widget(form.lorganisme)}}
+                
+                </div><br />
+                
+            {#      <div >
+            {{form_label(form.lemdp,"mdp")}}
+        {{form_widget(form.lemdp)}}
+                
+                </div><br />
+                
+                
+                <div >
+            {{form_label(form.id_formation,"id orgnisme")}}
+        {{form_widget(form.id_formation) }}
+                {{ form_widget(form.id_formation, { 'attr': {'value': 4} }) }}
+                 {{form_rest(form)}}
+
+                </div><br />    
+                #}
+                  <div >
+            {{form_label(form.nbr_inscrits,"participant")}} 
+        {{form_widget(form.nbr_inscrits)}} Il reste :{{message4}} places 
+                
+                </div><br />
+                   {{ form_widget(form.id_formation , { 'attr': {'value':message2} }) }}
+                 {{form_rest(form)}}
+                  
+       
+     
+                
+
+               
+                
         <p>   <button  type="submit"> Ajout </button>  </p>
         <p><a href="{{path('LamMdlBundle_formationinformatique')}}">retour</a></p>
 </form>
