@@ -3,10 +3,10 @@
 namespace Lam\MdlBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Lam\MdlBundle\Form\Type\organismeType; //TP9
-use Lam\MdlBundle\Entity\organisme; //TP9
-use Lam\MdlBundle\Form\Type\ParticipantType; //TP9
-use Lam\MdlBundle\Entity\Inscription; //TP9
+use Lam\MdlBundle\Form\Type\organismeType;
+use Lam\MdlBundle\Entity\organisme;
+use Lam\MdlBundle\Form\Type\ParticipantType;
+use Lam\MdlBundle\Entity\Inscription;
 
 class FormulaireController extends Controller {
 
@@ -20,28 +20,17 @@ class FormulaireController extends Controller {
             echo $mess3;
         }
 
-
         //Mise en place du formulire 
         $uneInscription = new Inscription();
         $request = $this->getRequest();
         $form = $this->createForm(new ParticipantType(), $uneInscription);
     
         if ($request->getMethod() == 'POST') {
-            
-     
-
-
-           
 
             $form->bindRequest($request);
 
             //si les contraintes sont respectés ,enregistrement de l'inscription
-            if ($form->isValid()) {
-                
-                
-              
-                
-                
+            if ($form->isValid()) { 
                 
                 //recuperation du nombre d'inscrit saisis par l'utilisateur 
                 $nbInscrit = $uneInscription->getNbrInscrits();
@@ -54,18 +43,10 @@ class FormulaireController extends Controller {
                       ->getRepository('LamMdlBundle:Inscription')
                       ->NbInscriptFormation($nbInscrit,$idFormation);
                 
-                
-                
-                
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($uneInscription);
                 $em->flush();
                 $mess = 'L\'inscription à bien été ajouté';
-
-
-
-
-
 
                 //pour remetttre le formulaire a zero
                 //  $uneInscription =new Inscription();
@@ -74,7 +55,6 @@ class FormulaireController extends Controller {
                 return $this->redirect($this->generateUrl("LamMdlBundle_formationinformatique"));
             }
         }
-
 
         return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:ajout.html.twig', array(
                     'form' => $form->createView(), 'message' => $mess, "message2" => $mess2, 'message4' => $mess4
@@ -111,6 +91,5 @@ class FormulaireController extends Controller {
 
         //return $this->render('LamMdlBundle:formulaire:inscriptionOrganisme.html.twig');
     }
-
 
 }
