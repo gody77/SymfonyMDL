@@ -19,7 +19,7 @@
 {% set dateLimite=unS.DateLimite|date('d-m-Y')%}
 {% set dateActuel=date()%} 
 {%set placeRestante = laF.nbplace-unS.nbinscrit %}
-{% if dateLimite< dateActuel %} 
+{% if (dateLimite< dateActuel) and placeRestante != 0 %} 
 
         <TH>
         <form action="{{ path('LamMdlBundle_Form') }}" method="POST">

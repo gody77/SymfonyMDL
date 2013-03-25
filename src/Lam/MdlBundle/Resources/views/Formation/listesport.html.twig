@@ -19,7 +19,7 @@
 {% set dateActuel=date()%}
 {%set placeRestante = laF.Nbplacesrestante-unS.Nbinscrit %}
 
-{% if dateLimite< dateActuel %} 
+{% if (dateLimite< dateActuel) and (placeRestante != 0) %} 
         <TH><form action="" method="POST">
             <input type="hidden" value="{{unS.Id}}" name="idFormation">
             <input type="hidden" value="{{placeRestante}}" name="placeRestante">
