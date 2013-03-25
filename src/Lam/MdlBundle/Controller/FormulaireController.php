@@ -27,6 +27,8 @@ class FormulaireController extends Controller {
         $form = $this->createForm(new ParticipantType(), $uneInscription);
     
         if ($request->getMethod() == 'POST') {
+            
+     
 
 
            
@@ -35,9 +37,26 @@ class FormulaireController extends Controller {
 
             //si les contraintes sont respectés ,enregistrement de l'inscription
             if ($form->isValid()) {
+                
+                
+              
+                
+                
+                
                 //recuperation du nombre d'inscrit saisis par l'utilisateur 
-                $test = $uneInscription->getNbrInscrits();
-                echo $test . "on  y crois";
+                $nbInscrit = $uneInscription->getNbrInscrits();
+                $idFormation=$uneInscription->getIdFormation();
+                echo  $idFormation . "on  y crois".$nbInscrit ;
+                
+                //requete
+                $update = $this->getDoctrine()
+                      ->getEntityManager()
+                      ->getRepository('LamMdlBundle:Inscription')
+                      ->NbInscriptFormation($nbInscrit,$idFormation);
+                
+                
+                
+                
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($uneInscription);
                 $em->flush();
@@ -52,7 +71,7 @@ class FormulaireController extends Controller {
                 //  $uneInscription =new Inscription();
                 // $form=$this->createForm(new ParticipantType(),$uneInscription);
                 //Quand tout a bien passé , on peux rédiger(avec une route ) c'est facultatif
-                return $this->redirect($this->generateUrl("LamMdlBundle_x"));
+                return $this->redirect($this->generateUrl("LamMdlBundle_formationinformatique"));
             }
         }
 
@@ -93,43 +112,5 @@ class FormulaireController extends Controller {
         //return $this->render('LamMdlBundle:formulaire:inscriptionOrganisme.html.twig');
     }
 
-    public function recupAction() {
-        $nomFormation = $_POST['nomFormation'];
-        $idFormation = $_POST['idFormation'];
-        //Mise en place du formulire 
-        $uneInscription = new Inscription();
-        $request = $this->getRequest();
-        $form = $this->createForm(new ParticipantType(), $uneInscription);
-        $mess = "";
-
-        if ($request->getMethod() == 'POST') {
-
-            $form->bindRequest($request);
-            //si les contraintes sont respectés ,enregistrement du nouveau visiteur 
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($uneInscription);
-                $em->flush();
-                $mess = 'L\'inscription à bien été ajouté';
-
-
-
-                //pour remetttre le formulaire a zero
-                $uneInscription = new Inscription();
-                $form = $this->createForm(new ParticipantType(), $uneInscription);
-
-                //Quand tout a bien passé , on peux rédiger(avec une route ) c'est facultatif
-                //return $this->redirect($this->generateUrl('route',array(si neccessaire )));
-            }
-        }
-
-
-        return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:ajout.html.twig', array(
-                    'form' => $form->createView(),
-                    'message' => $nomFormation,
-                    'message2' => $idFormation
-        ));
-        //'message'=>$mess ));
-    }
 
 }

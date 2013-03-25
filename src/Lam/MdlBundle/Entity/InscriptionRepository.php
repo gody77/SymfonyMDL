@@ -15,7 +15,7 @@ class InscriptionRepository extends EntityRepository
     
     public function NbInscriptFormation($nbInscit,$idFormation)
     {
-    $query = $this->_em->createQuery("update LamMdlBundle:Formation f set f.nbinscrits='$nbInscit'   where f.id='$idFormation' ");
+    $query = $this->_em->createQuery("UPDATE LamMdlBundle:Formation f set f.nbinscrit=f.nbinscrit+'$nbInscit'  where f.id='$idFormation' ");
     $resultats = $query->execute();
     return $resultats;
   }
