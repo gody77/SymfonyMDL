@@ -16,9 +16,9 @@ class FormulaireController extends Controller {
             $mess2 = $idFormation = $_POST['idFormation'];
             $mess3 = $_POST['fid'];
             $mess4 = $_POST['placeRestante'];
-
+            
             echo $mess3;
-        }
+        }  
 
         //Mise en place du formulire 
         $uneInscription = new Inscription();
@@ -35,29 +35,49 @@ class FormulaireController extends Controller {
                 //recuperation du nombre d'inscrit saisis par l'utilisateur 
                 $nbInscrit = $uneInscription->getNbrInscrits();
                 $idFormation=$uneInscription->getIdFormation();
-                echo  $idFormation . "on  y crois".$nbInscrit ;
+                echo  $idFormation . " on  y crois ".$nbInscrit ;
                 
-                //requete
-                $update = $this->getDoctrine()
-                      ->getEntityManager()
-                      ->getRepository('LamMdlBundle:Inscription')
-                      ->NbInscriptFormation($nbInscrit,$idFormation);
+                // Récupération des valeurs envoyées lors de l'ajout pour la cas 
+                // où le nombre d'inscrit et supérieur au nombre de place.
+                if(isset($_POST['nbPlace'])){
+                    $nbPlace = $_POST['nbPlace'];
+                    $nomF = $_POST['nomF'];
+                    $idF = $_POST['idF'];
+                }
                 
-                $em = $this->getDoctrine()->getEntityManager();
-                $em->persist($uneInscription);
-                $em->flush();
-                $mess = 'L\'inscription à bien été ajouté';
+                // Vérification
+                // Si nbPlace > nbInscrit
+                if($nbPlace >= $nbInscrit){
+                    ?><br /><?php
+                    echo "place = ".$nbPlace." inscrit = ".$nbInscrit;
+                    
+                    //requete
+                    $update = $this->getDoctrine()
+                          ->getEntityManager()
+                          ->getRepository('LamMdlBundle:Inscription')
+                          ->NbInscriptFormation($nbInscrit,$idFormation);
 
-                //pour remetttre le formulaire a zero
-                //  $uneInscription =new Inscription();
-                // $form=$this->createForm(new ParticipantType(),$uneInscription);
-                //Quand tout a bien passé , on peux rédiger(avec une route ) c'est facultatif
-                return $this->redirect($this->generateUrl("LamMdlBundle_formationinformatique"));
+                    $em = $this->getDoctrine()->getEntityManager();
+                    $em->persist($uneInscription);
+                    $em->flush();
+                    $mess = 'L\'inscription à bien été ajouté';
+
+                    //pour remetttre le formulaire a zero
+                    //  $uneInscription =new Inscription();
+                    // $form=$this->createForm(new ParticipantType(),$uneInscription);
+                    //Quand tout a bien passé , on peux rédiger(avec une route ) c'est facultatif
+                    return $this->redirect($this->generateUrl("LamMdlBundle_formationinformatique"));
+                }else{ // Si le nombre de place n'est pas suffisant.
+                    // Retourne sur le formulaire de saisi d'inscription afin d'afficher un message d'erreur.
+                    $messageErreur = "Vous avez indiqué trop de personnes inscrite par rapport au nombre de place disponible.";
+                    return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:ajout.html.twig', array(
+                    'form' => $form->createView(), 'message' => $nomF, "message2" => $idF, 'message4' => $nbPlace, 'erreur'=> $messageErreur));
+                }
             }
         }
 
         return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:ajout.html.twig', array(
-                    'form' => $form->createView(), 'message' => $mess, "message2" => $mess2, 'message4' => $mess4
+                    'form' => $form->createView(), 'message' => $mess, "message2" => $mess2, 'message4' => $mess4, 'erreur'=>""
         ));
         //'message'=>$mess ));
     }
