@@ -48,13 +48,7 @@ class Formationsport
      */
     private $nbplace;
 
-    /**
-     * @var integer $nbplacesrestante
-     *
-     * @ORM\Column(name="nbPlacesRestante", type="integer", nullable=false)
-     */
-    private $nbplacesrestante;
-
+   
 
 
     /**
@@ -147,23 +141,5 @@ class Formationsport
         return $this->nbplace;
     }
 
-    /**
-     * Set nbplacesrestante
-     *
-     * @param integer $nbplacesrestante
-     */
-    public function setNbplacesrestante($nbplacesrestante)
-    {
-        $this->nbplacesrestante = $nbplacesrestante;
-    }
-
-    /**
-     * Get nbplacesrestante
-     *
-     * @return integer 
-     */
-    public function getNbplacesrestante()
-    {
-        return $this->nbplacesrestante;
-    }
+  
 }

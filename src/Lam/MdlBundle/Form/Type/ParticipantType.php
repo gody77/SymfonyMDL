@@ -18,7 +18,7 @@ class ParticipantType extends AbstractType {
                 ->add("id_formation","hidden")
                 ->add("lorganisme")
                 //   ->add("lemdp","password",array('label'=>"mdp :"))
-                ->add("nbr_inscrits", "integer", array('label' => "nombre participant :"));
+                ->add("nbr_inscrits", "number", array('label' => "nombre participant :"));
 
         //test
     }

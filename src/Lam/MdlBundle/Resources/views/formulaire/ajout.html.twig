@@ -2,44 +2,48 @@
 
 {% block body %}
 
-  {% if message %}
 
-<h1>Inscription pour la  
-    <br />
+  {% if message is defined %}
+
+<h1>Inscription pour la <br />
+
         {{message}}
-    {{message2}}
-    
-    </h1>
+ </h1>
     {% endif %}
 
 <form action="{{path('LamMdlBundle_Form')}}"method="POST"{{form_enctype(form)}}>
 
-        <div >
-        {{form_label(form.lorganisme,"Nom de l'orgnisme")}} 
-        {{form_widget(form.lorganisme)}} 
-        </div><br />
-                
-        <div>
-            {# On affiche un message d'erreur si le nombre d'inscrit est supérieur au nombre de places #}
-            {% if erreur %}
-                {{erreur}}
+      {# On affiche un message d'erreur si le nombre d'inscrit est supérieur au nombre de places #}
+            {% if erreur is defined %}
+    <p>  {{erreur}}</p>
             {% endif %}
-            {{form_label(form.nbr_inscrits,"participant")}}
-            {{form_widget(form.nbr_inscrits)}} Il reste :{{message4}} places  
-        </div><br />
-              
-        <div>
+
+    <p>
+        {{form_label(form.lorganisme,"Nom de l'organisme")}} 
+        {{form_widget(form.lorganisme)}} 
+        </p>
+
+        <p>
+            <label for="mdp">Mot de passe</label>
+            <input type="password" id="mdp" name="mdp">
+        </p>
+        <p>
+            {{form_label(form.nbr_inscrits,"Nombre de participants")}}
+            {{form_widget(form.nbr_inscrits)}}</p> (Il reste :{{message4}} places)  
+
+
+            <div>
             {# Variables nécéssaire à l'envoie pour gérer le cas d'erreur #}
-            <input type="hidden" value="{{message}}" name="nomF">
-            <input type="hidden" value="{{message2}}" name="idF">
-            <input type="hidden" value="{{message4}}" name="nbPlace">  
-        </div><br />
-        
+                    <input type="hidden" value="{{message}}" name="nomF">
+                    <input type="hidden" value="{{message2}}" name="idF">
+                    <input type="hidden" value="{{message4}}" name="nbPlace">  
+                </div><br />
+
         {{ form_widget(form.id_formation , { 'attr': {'value':message2} }) }}
         {{form_rest(form)}}
-                  
-        <p>   <button  type="submit"> Ajout </button>  </p>
-        <p><a href="{{path('LamMdlBundle_formationinformatique')}}">retour</a></p>
-</form>
+
+                <p>   <button  type="submit"> Ajout </button>  </p>
+                <p><a href="{{path('LamMdlBundle_formationinformatique')}}">retour</a></p>
+            </form>
 
 {% endblock %}  

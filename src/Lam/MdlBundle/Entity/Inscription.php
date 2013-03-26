@@ -3,6 +3,7 @@
 namespace Lam\MdlBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Lam\MdlBundle\Entity\Inscription
@@ -29,7 +30,7 @@ class Inscription {
 
     /**
      * @var integer $nbr_inscrits
-     *
+     *@Assert\Min(1) 
      * @ORM\Column(name="nbr_inscrits", type="integer", length=3)
      */
     private $nbr_inscrits;

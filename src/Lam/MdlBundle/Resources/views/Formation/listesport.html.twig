@@ -17,15 +17,18 @@
         <TH><h2>Stage {{nb}}</TH> 
      {% set dateLimite=unS.Date|date('d-m-Y')%}
 {% set dateActuel=date()%}
-{%set placeRestante = laF.Nbplacesrestante-unS.Nbinscrit %}
-
+{%set placeRestante = laF.nbplace-unS.nbinscrit %}
 {% if (dateLimite< dateActuel) and (placeRestante != 0) %} 
-        <TH><form action="" method="POST">
+            
+        <TH><form action="{{ path('LamMdlBundle_Form') }}" method="POST">
+            
             <input type="hidden" value="{{unS.Id}}" name="idFormation">
+             <input type="hidden" value="{{laF.id}}" name="fid">
             <input type="hidden" value="{{placeRestante}}" name="placeRestante">
             <input type="hidden" value="{{ laF.Titre }}" name="nomFormation">
             <input type="hidden" value="{{ unS.Date|date('d-m-Y') }}" name="dateFormation">
             <input type="submit" value="S'inscrire pour cette date" style="background-color:#3cb371" style="color:white" >
+       
         </form> 
         Nombre de places restantes : {{ placeRestante }}</TH></TR>
 

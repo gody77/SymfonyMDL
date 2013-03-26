@@ -11,13 +11,16 @@ use Lam\MdlBundle\Entity\Inscription;
 class FormulaireController extends Controller {
 
     public function ajoutAction() {
+        
+        
+         
         if (isset($_POST['nomFormation'])) {
             $mess = $nomFormation = $_POST['nomFormation'];
             $mess2 = $idFormation = $_POST['idFormation'];
             $mess3 = $_POST['fid'];
             $mess4 = $_POST['placeRestante'];
             
-            echo $mess3;
+            
         }  
 
         //Mise en place du formulire 
@@ -34,8 +37,10 @@ class FormulaireController extends Controller {
                 
                 //recuperation du nombre d'inscrit saisis par l'utilisateur 
                 $nbInscrit = $uneInscription->getNbrInscrits();
+                
                 $idFormation=$uneInscription->getIdFormation();
-                echo  $idFormation . " on  y crois ".$nbInscrit ;
+                $nomOrganisme=$uneInscription ->getLorganisme();
+                
                 
                 // Récupération des valeurs envoyées lors de l'ajout pour la cas 
                 // où le nombre d'inscrit et supérieur au nombre de place.
@@ -43,13 +48,29 @@ class FormulaireController extends Controller {
                     $nbPlace = $_POST['nbPlace'];
                     $nomF = $_POST['nomF'];
                     $idF = $_POST['idF'];
+                    $mdpTaper=$_POST['mdp'];
                 }
-                
-                // Vérification
+                // recuperation du mdp 
+                  $verifMdp = $this->getDoctrine()
+                      ->getEntityManager()
+                      ->getRepository('LamMdlBundle:Organisme')
+                      ->verificationMdp($nomOrganisme);
+                  
+                  
+ foreach($verifMdp as $x)
+{
+
+$mdpOrganisme=$x['mdpOrganisme'];
+
+}
+
+if($mdpTaper==$mdpOrganisme)
+{
+     // Vérification
                 // Si nbPlace > nbInscrit
                 if($nbPlace >= $nbInscrit){
                     ?><br /><?php
-                    echo "place = ".$nbPlace." inscrit = ".$nbInscrit;
+                    
                     
                     //requete
                     $update = $this->getDoctrine()
@@ -62,13 +83,10 @@ class FormulaireController extends Controller {
                     $em->flush();
                     $mess = 'L\'inscription à bien été ajouté';
 
-                    //pour remetttre le formulaire a zero
-                    //  $uneInscription =new Inscription();
-                    // $form=$this->createForm(new ParticipantType(),$uneInscription);
-                    //Quand tout a bien passé , on peux rédiger(avec une route ) c'est facultatif
+                  
                     return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:validation.html.twig', array(
                     'form' => $form->createView(), 'nomF' => $nomF, 'nbInscrit' => $nbInscrit));
-                    //return $this->redirect($this->generateUrl("LamMdlBundle_formationinformatique"));
+                   
                 
                     
                 }else{ // Si le nombre de place n'est pas suffisant.
@@ -77,12 +95,31 @@ class FormulaireController extends Controller {
                     return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:ajout.html.twig', array(
                     'form' => $form->createView(), 'message' => $nomF, "message2" => $idF, 'message4' => $nbPlace, 'erreur'=> $messageErreur));
                 }
+}
+else{
+   // Si le Mot de passe incorrect.
+                    // Retourne sur le formulaire de saisi d'inscription afin d'afficher un message d'erreur.
+                    $messageErreur = "Mot de passe incorrect , réessayer!!";
+                    return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:ajout.html.twig', array(
+                    'form' => $form->createView(), 'message' => $nomF, "message2" => $idF, 'message4' => $nbPlace, 'erreur'=> $messageErreur));
+}
+                  
+                  
+                
+              
             }
         }
-
+if (isset($_POST['nomFormation'])) {
         return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:ajout.html.twig', array(
                     'form' => $form->createView(), 'message' => $mess, "message2" => $mess2, 'message4' => $mess4, 'erreur'=>""
         ));
+        
+        
+} else{
+    echo'Le nombre de personnes a inscrire doit etre un chiffre et superieur a 0 ! Réésayer!!';
+           return $this->redirect($this->generateUrl("LamMdlBundle_homepage"));
+        
+        }
         //'message'=>$mess ));
     }
 
