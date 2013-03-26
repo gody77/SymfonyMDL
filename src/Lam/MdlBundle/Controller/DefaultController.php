@@ -35,7 +35,7 @@ class DefaultController extends Controller
            $mdp=$unOrganisme->getMdpOrganisme();
            $lorganisme=$unOrganisme ->getNomOrganisme();
         
-        echo 'mdp : '. $mdp.' ton login : '.$lorganisme ;
+        echo 'mdp taper : '. $mdp.' ton login : '.$lorganisme. ' mdp de la  BDD ' ;
         
         
         
@@ -61,10 +61,10 @@ echo $monmdp;
 
 if($mdp==$monmdp)
 {
-    echo'gooood';
+    echo' gooood';
 }
 else{
-    echo'bouhhh';
+    echo' bouhhh';
 }
 
                 
