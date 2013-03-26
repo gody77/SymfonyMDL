@@ -22,21 +22,54 @@ class DefaultController extends Controller
         
         $form = $this->createForm(new \Lam\MdlBundle\Form\Type\VerifType(), $unOrganisme);
         $mess="";
+       
         
         if($request->getMethod() == 'POST'){
            $form->bindRequest($request);
-        
-        
-  
-        
-          
-           if(isset($_POST['Nom de l\'orgnisme'])){
-        
-       $mess2= $_POST['mdp_Organisme']; 
            
-    }
-    
-    echo 'lol'.' @'.$mess.'@ ';
+           
+           
+           
+           
+         
+           $mdp=$unOrganisme->getMdpOrganisme();
+           $lorganisme=$unOrganisme ->getNomOrganisme();
+        
+        echo 'mdp : '. $mdp.' ton login : '.$lorganisme ;
+        
+        
+        
+         //requete
+                $contro = $this->getDoctrine()
+                      ->getEntityManager()
+                      ->getRepository('LamMdlBundle:Organisme')
+                      ->verificationMdp($lorganisme);
+                        
+                   // print_r($contro);
+              
+                
+             
+ foreach($contro as $x)
+{
+
+$monmdp=$x['mdpOrganisme'];
+
+}
+
+echo $monmdp;
+
+
+if($mdp==$monmdp)
+{
+    echo'gooood';
+}
+else{
+    echo'bouhhh';
+}
+
+                
+              
+  
             // si contrainte respectée, enregistrement du visiteur
           //  if($form->isValid()){
               //  $em = $this->getDoctrine()->getEntityManager();

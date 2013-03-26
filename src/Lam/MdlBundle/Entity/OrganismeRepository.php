@@ -13,8 +13,8 @@ use Doctrine\ORM\EntityRepository;
 class OrganismeRepository extends EntityRepository
 {
     
-    public function verificationMdp($idOrga){
-     $query = $this->_em->createQuery("SELECT mdpOrnisme FROM LamMdlBundle:organisme   where organisme.id='$idOrga'");
+    public function verificationMdp($lorganisme){
+     $query = $this->_em->createQuery("SELECT o.mdpOrganisme FROM LamMdlBundle:organisme o  where o.nomOrganisme='$lorganisme'");
     $resultats = $query->getResult();
     return $resultats;
     
