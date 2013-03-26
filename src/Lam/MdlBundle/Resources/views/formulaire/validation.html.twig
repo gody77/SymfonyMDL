@@ -1,0 +1,9 @@
+{% extends 'LamMdlBundle::layout.html.twig' %}
+
+{% block body %}
+    Votre inscription a bien été réalisée pour la formation suivante :<br />
+    {{nomF}}<br />
+    Vous avez inscrit {{nbInscrit}} personne(s).
+    
+    <p><a href="{{path('LamMdlBundle_formationinformatique')}}">Retour</a></p>
+{% endblock %}  

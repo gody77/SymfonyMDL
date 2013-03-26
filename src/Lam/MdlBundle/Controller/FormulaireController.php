@@ -66,7 +66,11 @@ class FormulaireController extends Controller {
                     //  $uneInscription =new Inscription();
                     // $form=$this->createForm(new ParticipantType(),$uneInscription);
                     //Quand tout a bien passé , on peux rédiger(avec une route ) c'est facultatif
-                    return $this->redirect($this->generateUrl("LamMdlBundle_formationinformatique"));
+                    return $this->container->get('templating')->renderResponse('LamMdlBundle:formulaire:validation.html.twig', array(
+                    'form' => $form->createView(), 'nomF' => $nomF, 'nbInscrit' => $nbInscrit));
+                    //return $this->redirect($this->generateUrl("LamMdlBundle_formationinformatique"));
+                
+                    
                 }else{ // Si le nombre de place n'est pas suffisant.
                     // Retourne sur le formulaire de saisi d'inscription afin d'afficher un message d'erreur.
                     $messageErreur = "Vous avez indiqué trop de personnes inscrite par rapport au nombre de place disponible.";
