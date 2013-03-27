@@ -1,5 +1,5 @@
 article{
-background: greenyellow;
+background: skyblue;
 text-align:center;
 
 padding:10px;
@@ -8,12 +8,14 @@ padding:10px;
 
 nav li {
 display:inline-block;
-margin:10px;
-background: aqua;
-border-radius: 30px;
-padding:20px;
-text-shadow:5px 5px 5px ;
+
+background:skyblue   ;
+border-radius: 8px;
+padding:17px;
+
 }
+
+
 
 nav a{
 color:blue;
@@ -22,7 +24,8 @@ font-size: 20px;
 
 footer{
 text-align:center;
-background: purple;
+text-decoration: blink;
+background: skyblue;
 color:white;
 padding-top: 0.4%;
 margin-top: 20px;
@@ -31,7 +34,7 @@ height: 10%;
 
 body{
 text-align:center;
-background: pink;
+background:#D9D9D9;
 font-size: 20px;
  /* width : 980px;*/
  width : 70%;
@@ -43,15 +46,30 @@ li{
 list-style-type:none;
 }
 
-a{
-color: purple;
+
+a:focus{
+   color:red;
+   
 }
 
+a:active{
+    color:red;
+}
+a:visited{
+    color:red;
+}
 @-moz-keyframes myfirst{
 from {background:skyblue;}
-to {background: greenyellow;}
+to {background: skyblue;}
 }
 
 header{
 background: skyblue;
+}
+
+
+#idErreur{
+    color:red;
+    text-decoration: blink;
+font-size: 20px;
 }
