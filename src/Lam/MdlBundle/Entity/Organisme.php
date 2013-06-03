@@ -258,9 +258,7 @@ class Organisme
     
    
     
-  
-    
-    
+ 
     
     /**
    * @ORM\OneToMany(targetEntity="Lam\MdlBundle\Entity\Inscription", mappedBy="lorganisme")

@@ -16,10 +16,10 @@
     <TR> 
         <TH><h2>Stage {{nb}}</TH> 
 
-{% set dateLimite=unS.DateLimite|date('d-m-Y')%}
+{% set dateLimite=unS.DateLimite%}
 {% set dateActuel=date()%} 
 {%set placeRestante = laF.nbplace-unS.nbinscrit %}
-{% if (dateLimite< dateActuel) and placeRestante != 0 %} 
+{% if (dateLimite > dateActuel) and placeRestante != 0 %} 
 
         <TH>
         <form action="{{ path('LamMdlBundle_Form') }}" method="POST">
